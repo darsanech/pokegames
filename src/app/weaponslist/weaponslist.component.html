@@ -1,5 +1,7 @@
+<div mt-dialog-title>{{inputdata.title}}</div>
 <div *ngFor="let weapon of weapons">
-    <p>
+    <button (click)="selectweapon(weapon.id)">
         Nombre: {{weapon.name}}
-    </p>
+    </button>
 </div>
+<button (click)="closeselection()">Close</button>
