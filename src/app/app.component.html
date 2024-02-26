@@ -178,19 +178,30 @@
 </style>
 
 <main class="main">
+
   <div class="guessgrid">
-    <button type="menu" (click)="selectweapon()" class="grid-item" >2</button>
-    <div class="grid-item">2</div>
-    <div class="grid-item">3</div>
-    <div class="grid-item">4</div>
-    <div class="grid-item">5</div>
-    <div class="grid-item">6</div>
-    <div class="grid-item">7</div>
-    <div class="grid-item">8</div>
-    <div class="grid-item">9</div>
+    <p></p>
+    <p class="skillr">{{weaponservice.s[3]}}</p>
+    <p class="skillr">{{weaponservice.s[4]}}</p>
+    <p class="skillr">{{weaponservice.s[5]}}</p>
+
+    <p class="skillr">{{weaponservice.s[0]}}</p>
+    <button type="menu" id="03" (click)="selectweapon($event)" class="grid-item" > {{weaponservice.w03}}</button>
+    <button type="menu" id="04" (click)="selectweapon($event)" class="grid-item" > {{weaponservice.w04}}</button>
+    <button type="menu" id="05" (click)="selectweapon($event)" class="grid-item" > {{weaponservice.w05}}</button>
+
+    <p class="skillr">{{weaponservice.s[1]}}</p>
+    <button type="menu" id="13" (click)="selectweapon($event)" class="grid-item" > {{weaponservice.w13}}</button>
+    <button type="menu" id="14" (click)="selectweapon($event)" class="grid-item" > {{weaponservice.w14}}</button>
+    <button type="menu" id="15" (click)="selectweapon($event)" class="grid-item" > {{weaponservice.w15}}</button>
+
+    <p class="skillr">{{weaponservice.s[2]}}</p>
+    <button type="menu" id="23" (click)="selectweapon($event)" class="grid-item" > {{weaponservice.w23}}</button>
+    <button type="menu" id="24" (click)="selectweapon($event)" class="grid-item" > {{weaponservice.w24}}</button>
+    <button type="menu" id="25" (click)="selectweapon($event)" class="grid-item" > {{weaponservice.w25}}</button>
   </div>
-  
 </main>
+<button (click)="reroll()">REROLL</button>
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->

@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { weapons } from '../weapons';
+import { pokemon } from '../pokemons';
 import { CommonModule } from '@angular/common'
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CheckweaponService } from '../checkweapon.service';
@@ -22,12 +22,12 @@ export class WeaponslistComponent implements OnInit{
   ngOnInit(): void {
     this.inputdata=this.data;
   }
-  weapons = [...weapons];
+  pokemons = [...pokemon];
   closeselection(){
     this.ref.close();
   }
-  selectweapon(id: any){
-    this.checkweapon.checkcorrect(id)
+  selectweapon(id: any, slot:any){
+    this.checkweapon.checkcorrect(id,slot)
     this.ref.close();
   }
 }

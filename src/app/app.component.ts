@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { WeaponslistComponent } from './weaponslist/weaponslist.component';
+import { CheckweaponService } from './checkweapon.service';
 
 
 @Component({
@@ -11,11 +12,21 @@ import { WeaponslistComponent } from './weaponslist/weaponslist.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'gridmk2';
-  constructor(private dialogRef : MatDialog){}
+  weaponservice:any;
+  constructor(private dialogRef : MatDialog, private checkweapon:CheckweaponService){}
 
-  selectweapon(){
+  ngOnInit(): void {
+    this.weaponservice=this.checkweapon;
+  }
+  reroll(){
+    this.weaponservice.reroll();
+  }
+  selectweapon(event: any){
+    var target = event.target || event.srcElement || event.currentTarget;
+    var idAttr = target.attributes.id;
+    var value = idAttr.nodeValue;
     this.dialogRef.open(WeaponslistComponent,{
       width:'60%',
       enterAnimationDuration:'500ms',
@@ -23,7 +34,8 @@ export class AppComponent {
 
       height:'60%',
       data:{
-        title:'Habilidades!'
+        title:'Habilidades!',
+        space: value,
       }
   });
   };
