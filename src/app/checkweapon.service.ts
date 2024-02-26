@@ -1,62 +1,84 @@
 import { Injectable } from '@angular/core';
-import { pokemon, tipos_pokemon } from './pokemons';
+import { pokemon, tipos_pokemon, Grid } from './pokemons';
 
 
 @Injectable({
   providedIn: 'root'
 })
+
+
+
 export class CheckweaponService {
   tipos = [...tipos_pokemon];
   pokemons = [...pokemon];
   [key: string]: any;
 
   s:Array<string>=["","","","","",""];
-
-
-  w03:string="1";
-  w04:string="2";
-  w05:string="3";
-  w13:string="4";
-  w14:string="5";
-  w15:string="6";
-  w23:string="7";
-  w24:string="8";
-  w25:string="9";
-
+  g:Array<Grid>=new Array<Grid>(9);
+  
+  creargrid(){
+    var x=0;
+    for(var i=0;i<3;i++){
+      for(var j=3;j<6;j++){
+        this.g[x]={
+          nombre:"Click",
+          tipo1:this.s[i],
+          tipo2:this.s[j],
+          correct:"wfguess",
+        }
+        x++;
+      }
+    }
+  }
+  
   constructor() { 
     this.reroll();
   }
   reroll(){
     for(let i=0; i<6;i++){
-      console.log(this.tipos[1]);
       this.s[i]=this.tipos[Math.floor(Math.random() * 17)];
     }
-    this.clear();
-  }
-  clear(){
-    this.w03="1";
-    this.w04="2";
-    this.w05="3";
-    this. w13="4";
-    this.w14="5";
-    this.w15="6";
-    this.w23="7";
-    this.w24="8";
-    this.w25="9";
+    this.creargrid();
   }
 
 
-  checkcorrect(idw: string, slot:string):any{
+  checkcorrect(idw: string, slot:number):any{
     console.log(idw);
     console.log(slot);
     var skills = "slot".split('');
     const found = this.pokemons.find((element) => element.name == idw)
-    if((found?.primary_type==this.s[Number(slot.charAt(0))] || found?.secondary_type==this.s[Number(slot.charAt(0))]) && 
-    (found?.primary_type==this.s[Number(slot.charAt(1))] ||found?.secondary_type==this.s[Number(slot.charAt(1))])){
-      this["w"+slot]=idw;
+    //lo del ninguno luego se quita
+    if(idw=="Ninguno"){
+      const notfound = this.pokemons.find(
+        (element) => 
+        (element.tipo1==this.g[slot].tipo1 && element.tipo2==this.g[slot].tipo2) ||
+        (element.tipo1==this.g[slot].tipo2 && element.tipo2==this.g[slot].tipo1))
+        if(notfound!=null){
+          window.alert('MAL!');
+          console.log(notfound);
+          this.g[slot].nombre=notfound?.name;
+          this.g[slot].correct="incorrrect";
+        }
+        else{
+          this.g[slot].nombre=idw;
+          this.g[slot].correct="correct";
+        }
+    }
+    else if((found?.tipo1==this.g[slot].tipo1 || found?.tipo1==this.g[slot].tipo2) && 
+    (found?.tipo2==this.g[slot].tipo2 ||found?.tipo2==this.g[slot].tipo2)){
+      this.g[slot].nombre=idw;
+      this.g[slot].correct="correct";
+
     }
     else{
+      console.log(found?.name);
+      console.log(slot);
+      console.log(this.g[slot].tipo1);
+      console.log(this.g[slot].tipo2);
+
       window.alert('MAL!');
+      this.g[slot].correct="incorrrect";
+      this.g[slot].nombre="Fallaste";
     }
   }
 }

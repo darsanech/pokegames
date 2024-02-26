@@ -1,4 +1,4 @@
-<div mt-dialog-title>{{inputdata.space}}</div>
+<div mt-dialog-title>{{inputdata.tipo1}} & {{inputdata.tipo2}}</div>
 <input type="search" id="filters" [(ngModel)]="filteredname" placeholder="Buscar">
 <div *ngFor="let pokemon of pokemons | filter:filteredname ">
     <button (click)="selectweapon(pokemon.name,inputdata.space)">
