@@ -32,8 +32,6 @@ export class BreedComponent implements OnInit{
             x:Math.floor(Math.random() * (contenedor.getBoundingClientRect().width - 150)),
             y:Math.floor(Math.random() * (contenedor.getBoundingClientRect().height - 150))
         }
-        console.log(this.randomoffset[i].x)
-        console.log(this.randomoffset[i].y)
       }
     }
   }
@@ -48,15 +46,17 @@ export class BreedComponent implements OnInit{
   drop(event: any, zonaId: string) {
     event.preventDefault();
     const data = event.dataTransfer.getData('text');
+    console.log(data)
     const draggableElement = document.getElementById(data);
-    console.log(zonaId)
     const contenedor = document.getElementById(zonaId);
-    console.log(contenedor?.id)
 
     if(draggableElement!=null && contenedor!=null){
       contenedor.appendChild(draggableElement);
+      console.log(event.offsetX)
+      console.log(event.offsetY)
+
       const offsetX = event.clientX - contenedor.getBoundingClientRect().left - draggableElement.clientWidth / 2;
-      const offsetY = event.clientY - contenedor.getBoundingClientRect().top - draggableElement.clientHeight / 2;
+      const offsetY = event.clientY - contenedor.getBoundingClientRect().top - draggableElement.clientHeight / 2 ;
       draggableElement.style.left = offsetX + 'px';
       draggableElement.style.top = offsetY + 'px';
     }
