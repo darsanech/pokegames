@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BreedserviceService } from '../services/breedservice.service';
 import { CommonModule } from '@angular/common';
-import { Pokemon } from '../pokemons';
+import { Place, Pokemon } from '../pokemons';
 
 @Component({
   selector: 'app-breed',
@@ -10,17 +10,33 @@ import { Pokemon } from '../pokemons';
   templateUrl: './breed.component.html',
   styleUrl: './breed.component.css'
 })
-export class BreedComponent {
+
+export class BreedComponent implements OnInit{
+  [x: string]: any;
   pokemons:Array<Pokemon>;
+  randomoffset:Array<Place>=new Array<Place>(10);
+
   constructor(private breedservice: BreedserviceService){
     this.pokemons=breedservice.guarderia;
   }
+  ngOnInit(): void {
+    this.randomNumber();
 
-  
-
-
-
-
+  }
+  randomNumber(){
+    const contenedor = document.getElementById('zona1');
+    if(contenedor!=null){
+      
+      for(let i=0; i<=10; i++){
+        this.randomoffset[i]={
+            x:Math.floor(Math.random() * (contenedor.getBoundingClientRect().width - 150)),
+            y:Math.floor(Math.random() * (contenedor.getBoundingClientRect().height - 150))
+        }
+        console.log(this.randomoffset[i].x)
+        console.log(this.randomoffset[i].y)
+      }
+    }
+  }
 
   //movimiento
   allowDrop(event: any) {
@@ -33,7 +49,10 @@ export class BreedComponent {
     event.preventDefault();
     const data = event.dataTransfer.getData('text');
     const draggableElement = document.getElementById(data);
+    console.log(zonaId)
     const contenedor = document.getElementById(zonaId);
+    console.log(contenedor?.id)
+
     if(draggableElement!=null && contenedor!=null){
       contenedor.appendChild(draggableElement);
       const offsetX = event.clientX - contenedor.getBoundingClientRect().left - draggableElement.clientWidth / 2;

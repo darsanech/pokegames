@@ -4,13 +4,15 @@
   (drop)="drop($event, 'zona1')"
   (dragover)="allowDrop($event)"
 >
-<div *ngFor="let pokemon of pokemons ">
+<div *ngFor="let pokemon of pokemons; let $index = index ">
   <img
     id="{{pokemon.name}}"
     src="../../assets/sprites/{{pokemon.name.toLowerCase()}}.png"
     draggable="true"
     (dragstart)="drag($event)"
     class="imagen"
+    style.left.px={{randomoffset[$index].x}}
+    style.top.px={{randomoffset[$index].y}}
   >  
 </div>
   

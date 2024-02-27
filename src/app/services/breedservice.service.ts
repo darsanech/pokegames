@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Pokemon, pokemon } from '../pokemons';
+import { Pokemon, pokemon, Place } from '../pokemons';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class BreedserviceService {
+  
   pokemons = [...pokemon];
 
   guarderia:Array<Pokemon>=new Array<Pokemon>;
@@ -12,6 +14,7 @@ export class BreedserviceService {
   constructor() { 
     this.addpokemons();
   }
+  
   
   addpokemons(){
     var aux=this.pokemons[Math.floor(Math.random() * 1008)];
