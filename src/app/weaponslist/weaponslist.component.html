@@ -2,7 +2,10 @@
 <input type="search" id="filters" [(ngModel)]="filteredname" placeholder="Buscar">
 <div *ngFor="let pokemon of pokemons | filter:filteredname ">
     <button (click)="selectweapon(pokemon.name,inputdata.space)">
+        <img src="../../assets/sprites/{{pokemon.name.toLowerCase()}}.png" height="100px" width="100px" alt="Italian Trulli"
+        onerror="this.onerror=null; this.src='../../assets/sprites/miss.png'" >
         {{pokemon.name}}
+
     </button>
 </div>
 <button (click)="closeselection()">Close</button>
