@@ -75,14 +75,18 @@ export class CheckweaponService {
 
     }
     else{
-      console.log(found?.name); 
-      console.log(slot);
-      console.log(this.g[slot].tipo1);
-      console.log(this.g[slot].tipo2);
-
+      const notfound = this.pokemons.find(
+        (element) => 
+        (element.tipo1==this.g[slot].tipo1 && element.tipo2==this.g[slot].tipo2) ||
+        (element.tipo1==this.g[slot].tipo2 && element.tipo2==this.g[slot].tipo1))
+      if(notfound!=null){
+        this.g[slot].nombre=notfound?.name;
+      }
+      else{
+        this.g[slot].nombre="Ninguno";
+      }
       window.alert('MAL!');
       this.g[slot].correct="incorrrect";
-      this.g[slot].nombre="Fallaste";
     }
   }
 }

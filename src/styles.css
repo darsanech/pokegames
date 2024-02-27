@@ -17,11 +17,19 @@
   pointer-events: none;
 }
 
+.principalpage{
+  display:grid;
+}
+
 .guessgrid{
     display: grid;
+    grid-row-start: 10%;
+    grid-column-start: 10%;
     grid-template-columns:  auto auto auto auto;
-    gap: 20px;
-    padding: 10px;
+    grid-template-rows:  auto auto auto auto;
+
+    gap: 10px;
+    padding: 5px;
     
     }
     
