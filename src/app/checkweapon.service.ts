@@ -35,8 +35,12 @@ export class CheckweaponService {
     this.reroll();
   }
   reroll(){
+    var aux=this.tipos[Math.floor(Math.random() * 17)];
     for(let i=0; i<6;i++){
-      this.s[i]=this.tipos[Math.floor(Math.random() * 17)];
+      while(this.s.includes(aux)){
+        aux=this.tipos[Math.floor(Math.random() * 17)];
+      }
+      this.s[i]=aux;
     }
     this.creargrid();
   }

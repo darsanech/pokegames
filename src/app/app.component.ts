@@ -37,8 +37,8 @@ export class AppComponent implements OnInit{
       data:{
         title:'Habilidades!',
         space: value,
-        tipo1: this.checkweapon.s[Number(value.charAt(0))],
-        tipo2: this.checkweapon.s[Number(value.charAt(1))],
+        tipo1: this.checkweapon.g[value].tipo1,
+        tipo2: this.checkweapon.g[value].tipo2,
       }
   });
   };
