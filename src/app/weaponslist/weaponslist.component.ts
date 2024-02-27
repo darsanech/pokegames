@@ -2,7 +2,7 @@ import { Component, Inject, OnInit} from '@angular/core';
 import { pokemon } from '../pokemons';
 import { CommonModule } from '@angular/common'
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CheckweaponService } from '../checkweapon.service';
+import { CheckweaponService } from '../services/checkweapon.service';
 import { FormsModule } from '@angular/forms';
 import { FilterPipe } from "../filter.pipe";
 

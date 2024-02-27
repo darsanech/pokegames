@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { WeaponslistComponent } from '../weaponslist/weaponslist.component';
-import { CheckweaponService } from '../checkweapon.service';
+import { CheckweaponService } from '../services/checkweapon.service';
 
 @Component({
   selector: 'app-sudoku',

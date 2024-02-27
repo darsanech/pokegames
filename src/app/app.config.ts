@@ -1,6 +1,6 @@
 import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { CheckweaponService } from './checkweapon.service';
+import { CheckweaponService } from './services/checkweapon.service';
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
