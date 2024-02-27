@@ -1,6 +1,27 @@
-<p>breed works!</p>
-<div class="container">
-    <div draggable="true" class="box">A</div>
-    <div draggable="true" class="box">B</div>
-    <div draggable="true" class="box">C</div>
-  </div>
+<div
+  id="zona1"
+  class="zonaDrag"
+  (drop)="drop($event, 'zona1')"
+  (dragover)="allowDrop($event)"
+>
+  <img
+    id="pokemon1"
+    src="../../assets/sprites/koraidon.png"
+    draggable="true"
+    (dragstart)="drag($event)"
+    class="imagen"
+  />
+  <img
+    id="imagen2"
+    src="../../assets/sprites/miraidon.png"
+    draggable="true"
+    (dragstart)="drag($event)"
+    class="imagen"
+  />
+</div>
+<div
+id="zona2"
+  class="zonaDrag"
+  (drop)="drop($event, 'zona2')"
+  (dragover)="allowDrop($event)"
+  ></div>
