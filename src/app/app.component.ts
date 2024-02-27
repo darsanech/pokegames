@@ -29,10 +29,11 @@ export class AppComponent implements OnInit{
     var value = idAttr.nodeValue;
     this.dialogRef.open(WeaponslistComponent,{
       width:'60%',
+      
       enterAnimationDuration:'500ms',
       exitAnimationDuration:'250ms',
 
-      height:'60%',
+      height:'80%',
       data:{
         title:'Habilidades!',
         space: value,

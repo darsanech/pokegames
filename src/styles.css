@@ -1,6 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
 
+.selection-grid{
+  display: grid;  
+    grid-template-columns: 20% 20% 20% 20% 20% ;
+    gap: 5px;
+    padding: 5px;
+    position:relative;
+}
+.grid-item:hover img {
+  opacity: 100;
+  pointer-events: none;
+}
+.grid-item:hover p {
+  opacity: 100;
+  pointer-events: none;
+}
+
 .guessgrid{
     display: grid;
     grid-template-columns:  auto auto auto auto;

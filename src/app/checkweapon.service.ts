@@ -65,13 +65,13 @@ export class CheckweaponService {
         }
     }
     else if((found?.tipo1==this.g[slot].tipo1 || found?.tipo1==this.g[slot].tipo2) && 
-    (found?.tipo2==this.g[slot].tipo2 ||found?.tipo2==this.g[slot].tipo2)){
+    (found?.tipo2==this.g[slot].tipo2 ||found?.tipo2==this.g[slot].tipo1)){
       this.g[slot].nombre=idw;
       this.g[slot].correct="correct";
 
     }
     else{
-      console.log(found?.name);
+      console.log(found?.name); 
       console.log(slot);
       console.log(this.g[slot].tipo1);
       console.log(this.g[slot].tipo2);
