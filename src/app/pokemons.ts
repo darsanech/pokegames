@@ -4,9 +4,10 @@ export interface Grid{
   tipo2: string;
   correct: string;
 }
-export interface Place {
-  x: number;
-  y: number
+export interface PatronMovimientos {
+  posx: number;
+  posy: number;
+  delay: string;
   }
 
 export interface Pokemon {

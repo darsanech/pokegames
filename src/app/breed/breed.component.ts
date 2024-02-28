@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BreedserviceService } from '../services/breedservice.service';
 import { CommonModule } from '@angular/common';
-import { Place, Pokemon } from '../pokemons';
+import { PatronMovimientos, Pokemon } from '../pokemons';
 
 @Component({
   selector: 'app-breed',
@@ -14,7 +14,7 @@ import { Place, Pokemon } from '../pokemons';
 export class BreedComponent implements OnInit{
   [x: string]: any;
   pokemons:Array<Pokemon>;
-  randomoffset:Array<Place>=new Array<Place>(10);
+  randomoffset:Array<PatronMovimientos>=new Array<PatronMovimientos>(10);
 
   constructor(private breedservice: BreedserviceService){
     this.pokemons=breedservice.guarderia;
@@ -23,15 +23,16 @@ export class BreedComponent implements OnInit{
     this.randomNumber();
 
   }
-  randomNumber(){
+  randomNumber(){ 
     const contenedor = document.getElementById('zona1');
     if(contenedor!=null){
-      
       for(let i=0; i<=10; i++){
         this.randomoffset[i]={
-            x:Math.floor(Math.random() * (contenedor.getBoundingClientRect().width - 150)),
-            y:Math.floor(Math.random() * (contenedor.getBoundingClientRect().height - 150))
+            posx:Math.floor(Math.random() * (contenedor.getBoundingClientRect().width - 150)),
+            posy:Math.floor(Math.random() * (contenedor.getBoundingClientRect().height - 150)),
+            delay:i/4+"s"
         }
+        console.log(this.randomoffset[i].delay)
       }
     }
   }
@@ -46,15 +47,11 @@ export class BreedComponent implements OnInit{
   drop(event: any, zonaId: string) {
     event.preventDefault();
     const data = event.dataTransfer.getData('text');
-    console.log(data)
     const draggableElement = document.getElementById(data);
     const contenedor = document.getElementById(zonaId);
 
     if(draggableElement!=null && contenedor!=null){
       contenedor.appendChild(draggableElement);
-      console.log(event.offsetX)
-      console.log(event.offsetY)
-
       const offsetX = event.clientX - contenedor.getBoundingClientRect().left - draggableElement.clientWidth / 2;
       const offsetY = event.clientY - contenedor.getBoundingClientRect().top - draggableElement.clientHeight / 2 ;
       draggableElement.style.left = offsetX + 'px';

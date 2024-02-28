@@ -5,17 +5,17 @@
   (dragover)="allowDrop($event)"
 >
 <div *ngFor="let pokemon of pokemons; let $index = index ">
-  <img
+    <img
     id="{{pokemon.name}}"
     src="../../assets/sprites/{{pokemon.name.toLowerCase()}}.png"
     draggable="true"
     (dragstart)="drag($event)"
-    class="imagen"
-    style.left.px={{randomoffset[$index].x}}
-    style.top.px={{randomoffset[$index].y}}
-    [style.position]="'absolute'"
-    
-  >  
+    class="pokemonguarderia"
+    style.left.px={{randomoffset[$index].posx}}
+    style.top.px={{randomoffset[$index].posy}}
+    style.animation-delay={{randomoffset[$index].delay}}
+  > 
+   
 </div>
   
 </div>

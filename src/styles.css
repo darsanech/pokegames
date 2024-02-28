@@ -9,10 +9,29 @@
   position: relative;
 }
 
-.imagen {
+.pokemonguarderia {
   width: 100px;
   height: 100px;
   position: absolute;
+  animation: movimiento 5s alternate;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+
+@keyframes movimiento {
+  0% {
+    transform: translateX(0%);
+  }
+  25% {
+    transform: translateX(10%);
+  }
+  75% {
+    transform: translateX(-10%);
+  }
+  100% {
+    transform: translateX(calc(var(--bounce-height) * -1));
+  }
 }
 
 .selection-grid{
