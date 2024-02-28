@@ -31,7 +31,6 @@ export class BreedComponent implements OnInit{
   randomNumber(){ 
     const contenedor = document.getElementById('zona0');
     if(contenedor!=null){
-      console.log(this.zona0)
       for(let i=0; i<=10; i++){
         this.randomoffset[i]={
             posx:Math.floor(Math.random() * (contenedor.getBoundingClientRect().width - 150)),
