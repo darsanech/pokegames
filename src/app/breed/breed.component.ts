@@ -29,13 +29,17 @@ export class BreedComponent implements OnInit{
 
   }
   randomNumber(){ 
+    const contenedor = document.getElementById('zona0');
+    if(contenedor!=null){
+      console.log(this.zona0)
       for(let i=0; i<=10; i++){
         this.randomoffset[i]={
-            posx:Math.floor(Math.random() * (this.zona0.nativeElement.width - 150)),
-            posy:Math.floor(Math.random() * (this.zona0.nativeElement.height - 150)),
+            posx:Math.floor(Math.random() * (contenedor.getBoundingClientRect().width - 150)),
+            posy:Math.floor(Math.random() * (contenedor.getBoundingClientRect().height - 150)),
             delay:i/4+"s"
         }
       }
+    }
   }
 
   //comprobar quienes estan en cada zona
