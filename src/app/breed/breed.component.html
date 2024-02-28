@@ -1,12 +1,12 @@
 <div
-  id="zona1"
+  #zona0
+  id="zona0"
   class="zonaDrag"
-  (drop)="drop($event, 'zona1')"
+  (drop)="drop($event, 'zona0')"
   (dragover)="allowDrop($event)"
 >
-<div *ngFor="let pokemon of pokemons; let $index = index ">
-    <img
-    id="{{pokemon.name}}"
+    <img *ngFor="let pokemon of pokemons; let $index = index "
+    id={{pokemon.name}}
     src="../../assets/sprites/{{pokemon.name.toLowerCase()}}.png"
     draggable="true"
     (dragstart)="drag($event)"
@@ -16,12 +16,32 @@
     style.animation-delay={{randomoffset[$index].delay}}
   > 
    
-</div>
   
 </div>
-<div
-id="zona2"
-  class="zonaDrag"
+<div class="gridGuarderia">
+  <div id="zona1"
+  #zona1
+  class="zonaCrianza"
+  (drop)="drop($event, 'zona1')"
+  (dragover)="allowDrop($event)"
+  ></div>
+  <div id="zona2"
+  #zona2
+  class="zonaCrianza"
   (drop)="drop($event, 'zona2')"
   (dragover)="allowDrop($event)"
   ></div>
+  <div id="zona3"
+  #zona3
+  class="zonaCrianza"
+  (drop)="drop($event, 'zona3')"
+  (dragover)="allowDrop($event)"
+  ></div>
+  <div id="zona4"
+  #zona4
+  class="zonaCrianza"
+  (drop)="drop($event, 'zona4')"
+  (dragover)="allowDrop($event)"
+  ></div>
+</div>
+<button (click)="pasarLista()">Check</button>
