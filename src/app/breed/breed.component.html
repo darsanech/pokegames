@@ -7,6 +7,7 @@
 >
     <img *ngFor="let pokemon of pokemons; let $index = index "
     id={{pokemon.name}}
+    alt={{pokemon.name}}
     src="../../assets/sprites/{{pokemon.name.toLowerCase()}}.png"
     draggable="true"
     (dragstart)="drag($event)"
@@ -15,7 +16,6 @@
     style.top.px={{randomoffset[$index].posy}}
     style.animation-delay={{randomoffset[$index].delay}}
   > 
-   
   
 </div>
 <div class="gridGuarderia">

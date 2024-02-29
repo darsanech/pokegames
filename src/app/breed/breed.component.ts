@@ -43,8 +43,14 @@ export class BreedComponent implements OnInit{
 
   //comprobar quienes estan en cada zona
   pasarLista(){
-    for(let j=0; j<this.zona0.nativeElement.children.length; j++){
-      console.log(this["zona0"].nativeElement.children[j].id)
+    for(let i=0; i<5; i++){
+      if(this.breedservice.puedenCriar(this["zona"+i].nativeElement.children)){
+        this.renderer.setStyle(this["zona"+i].nativeElement,'background-color','green')
+      }
+      else{
+        this.renderer.setStyle(this["zona"+i].nativeElement,'background-color','red')
+      }
+      
     }
 
   }
