@@ -1,6 +1,62 @@
 /* You can add global styles to this file, and also import other style files */
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
 
+/* sudoku */
+.guessgrid{
+  display: grid;
+  grid-template-columns: auto auto auto auto    ;
+  grid-template-rows:  auto auto auto auto    ;
+  border: 1px solid black;
+  gap: 1px;
+  height: 100%;
+  width: 100%;
+  }
+  
+.grid-item {
+  background-color: cream;
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  aspect-ratio: 1/1;
+  height: 12vw;
+  padding: 2px;
+  font-size: 1vw;
+  text-align: center;
+  border-radius: 100%;
+  
+}
+.grid-item img{
+  height: 5vw
+}
+.skillr{
+border: 1px solid black;
+align-self: center;
+
+}
+.skillr img{
+  height: 2vw;
+}
+
+
+.guessspot{
+background-color: brown;
+
+}
+
+.wfguess{
+background-color: #008CBA;
+}
+.correct{
+background-color: greenyellow;
+}
+.incorrrect{
+background-color: red;
+}
+
+
+
+
+
+
+/* breed */
 .zonaDrag {
   height: 200px;
   border: 2px solid black;
@@ -80,35 +136,3 @@
   display:grid;
 }
 
-.guessgrid{
-    display: grid;
-    grid-template-columns: 5% 30% 30% 30%   ;
-    grid-template-rows:  5% 30% 30% 30%   ;
-    gap: 10px;
-    
-    }
-    
-.grid-item {
-    background-color: cream;
-    border: 1px solid rgba(0, 0, 0, 0.8);
-    padding: 2px;
-    font-size: 20px;
-    text-align: center;
-  }
-.skillr{
-  align-items: center;
-  align-self: center;
-  align-content: center;
-  font-weight: 200;
-  text-align: center;
-  padding: 10px;
-}
-.wfguess{
-  background-color: #008CBA;
-}
-.correct{
-  background-color: greenyellow;
-}
-.incorrrect{
-  background-color: red;
-}
