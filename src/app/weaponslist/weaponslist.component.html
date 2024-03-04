@@ -1,8 +1,8 @@
-<div mt-dialog-title>{{inputdata.tipo1}} & {{inputdata.tipo2}}</div>
+<div class="capitalize" mt-dialog-title>{{inputdata.tipo1}} & {{inputdata.tipo2}}</div>
 <input type="search" id="filters" [(ngModel)]="filteredname" placeholder="Buscar">
 <div class="selection-grid">
     <div *ngFor="let pokemon of pokemons | filter:filteredname">
-        <button (click)="selectweapon(pokemon.name,inputdata.space)">
+        <button (click)="selectweapon(pokemon.url,inputdata.space)">
             <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.url}}.png" 
             height="100px" width="100px" alt="Italian Trulli"
             onerror="this.onerror=null; this.src='../../assets/sprites/miss.png'" >

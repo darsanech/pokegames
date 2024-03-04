@@ -11,10 +11,11 @@ export class PokeapiService implements OnInit{
     this.ngOnInit()
   }
 
+
   
   async ngOnInit(): Promise<void> {
       console.log("ONCE")
-      const url = 'https://pokeapi.co/api/v2/pokemon?limit=1350';
+      const url = 'https://pokeapi.co/api/v2/pokemon?limit=151';
       const respuesta = await fetch(url);
       const data = await respuesta.json();
       console.log(data.results)
@@ -25,15 +26,6 @@ export class PokeapiService implements OnInit{
       });
       this.detallesPokemon=data.results
       console.log(data.results)
-      /*
-      const detallesPromesas = data.results.map((pokemon: any) => {
-        return this.detalles(pokemon.url);
-      });
-      
-      this.detallesPokemon = await Promise.all(detallesPromesas)
-      //this.detallesPokemon=data.results;
-      console.log("Over")
-      */
   }
   
   async buscarDetalles(data:any):Promise<any>{
@@ -46,14 +38,31 @@ export class PokeapiService implements OnInit{
     return await Promise.all(detallesPromesas)
   }
 
+  async pokemonConDetalles(id:string):Promise<any>{
 
-  async detalles(url: string): Promise<any> {
+  }
+
+
+  async detalles(id: string): Promise<any> {
+    const respuesta = await fetch("https://pokeapi.co/api/v2/pokemon/"+id);
+    const datos = await respuesta.json();
+    return {
+        id: datos.id,
+        name: datos.name,
+        stats: datos.stats,
+        tipo: datos.types,
+        hab: datos.abilities,
+        species: datos.species
+    };
+  }
+  async detallesSpecies(url: string): Promise<any> {
     const respuesta = await fetch(url);
     const datos = await respuesta.json();
     return {
-        name: datos.name,
-        id: datos.id
+        id: datos.id,
+        name: datos.name
     };
   }
+
 
 }

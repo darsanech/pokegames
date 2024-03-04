@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { pokemon, tipos_pokemon, Grid } from '../pokemons';
+import { pokemon, tipos_pokemon, GridTipos } from '../pokemons';
+import { PokeapiService } from './pokeapi.service';
 
 
 @Injectable({
@@ -14,7 +15,7 @@ export class CheckweaponService {
   [key: string]: any;
 
   s:Array<string>=["","","","","",""];
-  g:Array<Grid>=new Array<Grid>(9);
+  g:Array<GridTipos>=new Array<GridTipos>(9);
   
   creargrid(){
     var x=0;
@@ -22,9 +23,9 @@ export class CheckweaponService {
       for(var j=3;j<6;j++){
         this.g[x]={
           nombre:"Click",
-          tipo1:this.s[i],
-          tipo2:this.s[j],
-          correct:"wfguess",
+          condicion1:this.s[i],
+          condicion2:this.s[j],
+          correct:"false",
         }
         x++;
       }
@@ -45,6 +46,25 @@ export class CheckweaponService {
     this.creargrid();
   }
 
+  chechifcorrect(id:string, tipospokemon: Array<any>, slot:number){
+    const con1 = this.g[slot].condicion1 
+    const con2 = this.g[slot].condicion2
+    if(tipospokemon.length<2){
+      console.log("incorrecto")
+    }
+    else if ((tipospokemon[0].type.name === con1 || tipospokemon[0].type.name === con2) &&
+    (tipospokemon[1].type.name === con1 || tipospokemon[1].type.name === con2)){
+        console.log("correcto")
+        this.g[slot].correct="true";
+        this.g[slot].nombre=id;
+    }
+    else{
+      console.log("suda")
+
+    }
+  }
+
+  /*
 
   checkcorrect(idw: string, slot:number):any{
     console.log(idw);
@@ -55,8 +75,8 @@ export class CheckweaponService {
     if(idw=="Ninguno"){
       const notfound = this.pokemons.find(
         (element) => 
-        (element.tipo1==this.g[slot].tipo1 && element.tipo2==this.g[slot].tipo2) ||
-        (element.tipo1==this.g[slot].tipo2 && element.tipo2==this.g[slot].tipo1))
+        (element.tipo1==this.g[slot].condicion1 && element.tipo2==this.g[slot].condicion2) ||
+        (element.tipo1==this.g[slot].condicion2 && element.tipo2==this.g[slot].condicion1))
         if(notfound!=null){
           window.alert('MAL!');
           console.log(notfound);
@@ -68,8 +88,8 @@ export class CheckweaponService {
           this.g[slot].correct="correct";
         }
     }
-    else if((found?.tipo1==this.g[slot].tipo1 || found?.tipo1==this.g[slot].tipo2) && 
-    (found?.tipo2==this.g[slot].tipo2 ||found?.tipo2==this.g[slot].tipo1)){
+    else if((found?.tipo1==this.g[slot].condicion1 || found?.tipo1==this.g[slot].condicion2) && 
+    (found?.tipo2==this.g[slot].condicion2 ||found?.tipo2==this.g[slot].condicion1)){
       this.g[slot].nombre=idw;
       this.g[slot].correct="correct";
 
@@ -77,8 +97,8 @@ export class CheckweaponService {
     else{
       const notfound = this.pokemons.find(
         (element) => 
-        (element.tipo1==this.g[slot].tipo1 && element.tipo2==this.g[slot].tipo2) ||
-        (element.tipo1==this.g[slot].tipo2 && element.tipo2==this.g[slot].tipo1))
+        (element.tipo1==this.g[slot].condicion1 && element.tipo2==this.g[slot].condicion2) ||
+        (element.tipo1==this.g[slot].condicion2 && element.tipo2==this.g[slot].condicion1))
       if(notfound!=null){
         this.g[slot].nombre=notfound?.name;
       }
@@ -89,4 +109,5 @@ export class CheckweaponService {
       this.g[slot].correct="incorrrect";
     }
   }
+  */
 }

@@ -1,7 +1,7 @@
-export interface Grid{
+export interface GridTipos{
   nombre: string;
-  tipo1: string;
-  tipo2: string;
+  condicion1: string;
+  condicion2: string;
   correct: string;
 }
 export interface PatronMovimientos {
@@ -27980,23 +27980,23 @@ export const grupo_huevo = [
 ]
 
 export const tipos_pokemon =[
-    "Normal",
-    "Fire",
-    "Water",
-    "Grass",
-    "Electric",
-    "Ice",
-    "Fighting",
-    "Poison",
-    "Ground",
-    "Flying",
-    "Psychic",
-    "Bug",
-    "Rock",
-    "Ghost",
-    "Dragon",
-    "Steel",
-    "Fairy"
+    "normal",
+    "fire",
+    "water",
+    "grass",
+    "electric",
+    "ice",
+    "fighting",
+    "poison",
+    "ground",
+    "flying",
+    "psychic",
+    "bug",
+    "rock",
+    "ghost",
+    "dragon",
+    "steel",
+    "fairy"
   ];
   
 

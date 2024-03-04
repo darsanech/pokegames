@@ -29,7 +29,7 @@
   
 }
 .grid-item img{
-  height: 5vw
+  height: 10vw
 }
 .skillr{
 border: 1px solid black;
@@ -47,11 +47,27 @@ background-color: brown;
 }
 
 .wfguess{
-background-color: #008CBA;
+background: linear-gradient(
+  to top,
+    white 0%,
+    white 45%,
+    black 46%,
+    black 54%,
+    red 55%,
+    red 100%
+);
 }
 .correct{
-background-color: greenyellow;
-}
+  background: linear-gradient(
+    to top,
+      white 0%,
+      white 45%,
+      black 46%,
+      black 54%,
+      red 55%,
+      red 100%
+  );
+  }
 .incorrrect{
 background-color: red;
 }
