@@ -7,34 +7,27 @@ export class PokeapiService implements OnInit{
   detallesPokemon: any;
 
   constructor() { 
-    console.log("AWA")
     this.ngOnInit()
   }
 
 
   
   async ngOnInit(): Promise<void> {
-      console.log("ONCE")
       const url = 'https://pokeapi.co/api/v2/pokemon?limit=151';
       const respuesta = await fetch(url);
       const data = await respuesta.json();
-      console.log(data.results)
       data.results.forEach((element: {
         name: any; url: string; }) => {
         element.url=element.url.split("/").slice(-2, -1)[0];
         element.name=element.name.replace(/-/g, " ");
       });
       this.detallesPokemon=data.results
-      console.log(data.results)
   }
   
   async buscarDetalles(data:any):Promise<any>{
-    console.log(data)
     const detallesPromesas = await data.map((pokemon: any) => {
       return this.detalles(pokemon.url);
     });
-    console.log("salir")
-    await console.log(detallesPromesas)
     return await Promise.all(detallesPromesas)
   }
 

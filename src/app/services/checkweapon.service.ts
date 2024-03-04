@@ -64,50 +64,5 @@ export class CheckweaponService {
     }
   }
 
-  /*
 
-  checkcorrect(idw: string, slot:number):any{
-    console.log(idw);
-    console.log(slot);
-    var skills = "slot".split('');
-    const found = this.pokemons.find((element) => element.name == idw)
-    //lo del ninguno luego se quita
-    if(idw=="Ninguno"){
-      const notfound = this.pokemons.find(
-        (element) => 
-        (element.tipo1==this.g[slot].condicion1 && element.tipo2==this.g[slot].condicion2) ||
-        (element.tipo1==this.g[slot].condicion2 && element.tipo2==this.g[slot].condicion1))
-        if(notfound!=null){
-          window.alert('MAL!');
-          console.log(notfound);
-          this.g[slot].nombre=notfound?.name;
-          this.g[slot].correct="incorrrect";
-        }
-        else{
-          this.g[slot].nombre=idw;
-          this.g[slot].correct="correct";
-        }
-    }
-    else if((found?.tipo1==this.g[slot].condicion1 || found?.tipo1==this.g[slot].condicion2) && 
-    (found?.tipo2==this.g[slot].condicion2 ||found?.tipo2==this.g[slot].condicion1)){
-      this.g[slot].nombre=idw;
-      this.g[slot].correct="correct";
-
-    }
-    else{
-      const notfound = this.pokemons.find(
-        (element) => 
-        (element.tipo1==this.g[slot].condicion1 && element.tipo2==this.g[slot].condicion2) ||
-        (element.tipo1==this.g[slot].condicion2 && element.tipo2==this.g[slot].condicion1))
-      if(notfound!=null){
-        this.g[slot].nombre=notfound?.name;
-      }
-      else{
-        this.g[slot].nombre="Ninguno";
-      }
-      window.alert('MAL!');
-      this.g[slot].correct="incorrrect";
-    }
-  }
-  */
 }
