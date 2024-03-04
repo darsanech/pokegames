@@ -18,8 +18,10 @@ export class PokeapiService implements OnInit{
       const respuesta = await fetch(url);
       const data = await respuesta.json();
       console.log(data.results)
-      data.results.forEach((element: { url: string; }) => {
+      data.results.forEach((element: {
+        name: any; url: string; }) => {
         element.url=element.url.split("/").slice(-2, -1)[0];
+        element.name=element.name.replace(/-/g, " ");
       });
       this.detallesPokemon=data.results
       console.log(data.results)
