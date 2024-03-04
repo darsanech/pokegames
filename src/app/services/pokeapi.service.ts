@@ -31,8 +31,26 @@ export class PokeapiService implements OnInit{
     return await Promise.all(detallesPromesas)
   }
 
-  async pokemonConDetalles(id:string):Promise<any>{
 
+  async gruposhuevo(): Promise<any>{
+    const url='https://pokeapi.co/api/v2/egg-group'
+    const respuesta = await fetch(url);
+    const data = await respuesta.json();
+    console.log("aaaa")
+    console.log(data.results)
+    data.results.pop()
+    console.log(data.results)
+    return data.results
+  }
+
+  async grupohuevo(id:string): Promise<any>{
+    const url='https://pokeapi.co/api/v2/egg-group/'+id
+    console.log(url)
+    const respuesta = await fetch(url);
+    const data = await respuesta.json();
+    console.log("aaaa")
+    console.log(data)
+    return data
   }
 
 

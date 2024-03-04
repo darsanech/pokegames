@@ -12,10 +12,9 @@ export class BreedserviceService {
   pokemons = [...pokemon];
   grupos_huevo = [...grupo_huevo];
 
-  guarderia:Array<Pokemon>=new Array<Pokemon>;
+  guarderia:Array<any>=new Array<any>;
   //1 -- 1008
   constructor() { 
-    this.addpokemons();
   }
   
   puedenCriar(lista:any){
@@ -55,7 +54,23 @@ export class BreedserviceService {
   mismoGrupoHuevo2(p1:Pokemon, p2:Pokemon){
     return [p2.grupohuevo1,p2.grupohuevo2].includes(p1.grupohuevo2)
   }
-  addpokemons(){
+
+  addpokemons(data:any){
+    console.log(data)
+    console.log(data.pokemon_species.length)
+    const mida=data.pokemon_species.length
+    for(let i=0; i<Math.floor(Math.random()*2)+2;i++){
+      const aux=Math.floor(Math.random() * mida)
+      var nuevopokemon=data.pokemon_species[aux]
+      data.pokemon_species.splice(aux,1)
+      nuevopokemon.url=nuevopokemon.url.split("/").slice(-2, -1)[0];
+      this.guarderia.push(nuevopokemon);
+      console.log(nuevopokemon)
+    }
+
+  }
+
+  addpokemons1(){
     var last:Array<string>=new Array<string>;
     for(let i=0; i<4; i++){
       var aux=this.grupos_huevo[Math.floor(Math.random() * 14)];

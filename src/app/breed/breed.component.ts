@@ -1,7 +1,8 @@
 import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { BreedserviceService } from '../services/breedservice.service';
 import { CommonModule } from '@angular/common';
-import { PatronMovimientos, Pokemon } from '../pokemons';
+import { PatronMovimientos, Pokemon, pokemon } from '../pokemons';
+import { PokeapiService } from '../services/pokeapi.service';
 
 @Component({
   selector: 'app-breed',
@@ -13,7 +14,7 @@ import { PatronMovimientos, Pokemon } from '../pokemons';
 
 export class BreedComponent implements OnInit{
   [x: string]: any;
-  pokemons:Array<Pokemon>;
+  pokemons:any=this.breedservice.guarderia;
   randomoffset:Array<PatronMovimientos>=new Array<PatronMovimientos>(10);
   @ViewChild('zona0') zona0!: ElementRef;
   @ViewChild('zona1') zona1!: ElementRef;
@@ -21,13 +22,26 @@ export class BreedComponent implements OnInit{
   @ViewChild('zona3') zona3!: ElementRef;
   @ViewChild('zona4') zona4!: ElementRef;
 
-  constructor(private breedservice: BreedserviceService, private renderer:Renderer2){
-    this.pokemons=breedservice.guarderia;
+  constructor(private breedservice: BreedserviceService, private renderer:Renderer2, private pokeapi:PokeapiService){
+    
   }
-  ngOnInit(): void {
-    this.randomNumber();
+  async ngOnInit(): Promise<void> {
+    this.randomNumber()
+    var last:Array<string>=new Array<string>;
+    const gruposhuevo = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14];
+    console.log(gruposhuevo)
+    for(let i=0; i<4; i++){
+      const id=Math.floor(Math.random() * gruposhuevo.length)
+      var data=await this.pokeapi.grupohuevo(gruposhuevo[id].toString());
+      gruposhuevo.splice(id,1)
+      console.log(data)
+      this.breedservice.addpokemons(data);
+    }
+    this.pokemons=this.breedservice.guarderia;
 
   }
+
+
   randomNumber(){ 
     const contenedor = document.getElementById('zona0');
     if(contenedor!=null){
@@ -35,7 +49,7 @@ export class BreedComponent implements OnInit{
         this.randomoffset[i]={
             posx:Math.floor(Math.random() * (contenedor.getBoundingClientRect().width - 150)),
             posy:Math.floor(Math.random() * (contenedor.getBoundingClientRect().height - 150)),
-            delay:i/4+"s"
+            delay:Math.floor(Math.random() *4)+"s"
         }
       }
     }
@@ -43,6 +57,8 @@ export class BreedComponent implements OnInit{
 
   //comprobar quienes estan en cada zona
   pasarLista(){
+    console.log(this.breedservice.guarderia)
+    this.pokemons.pop()
     for(let i=0; i<5; i++){
       if(this.breedservice.puedenCriar(this["zona"+i].nativeElement.children)){
         this.renderer.setStyle(this["zona"+i].nativeElement,'background-color','green')
