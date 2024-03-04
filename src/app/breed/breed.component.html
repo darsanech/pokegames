@@ -6,7 +6,7 @@
   (dragover)="allowDrop($event)"
 >
 <img *ngFor="let pokemon of pokemons; index as index "
-id={{pokemon.name}}
+id={{pokemon.url}}
 alt={{pokemon.name}}
 src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.url}}.png"
 draggable="true"
