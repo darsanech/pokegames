@@ -5,6 +5,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CheckweaponService } from '../services/checkweapon.service';
 import { FormsModule } from '@angular/forms';
 import { FilterPipe } from "../filter.pipe";
+import { PokeapiService } from '../services/pokeapi.service';
 
 
 @Component({
@@ -17,15 +18,21 @@ import { FilterPipe } from "../filter.pipe";
 export class WeaponslistComponent implements OnInit{
   inputdata:any;
   filteredname:any;
-  constructor(private ref:MatDialogRef<WeaponslistComponent>, 
+  pokemons:any;
+  imagenCache: { [key: string]: Promise<string> } = {};
+  constructor(private ref:MatDialogRef<WeaponslistComponent>,
     @Inject(MAT_DIALOG_DATA) public data:any,
-    private checkweapon: CheckweaponService){
+    private checkweapon: CheckweaponService,
+    private pokeapi:PokeapiService){
+
 
   }
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.inputdata=this.data;
+    this.pokemons = await this.pokeapi.detallesPokemon
   }
-  pokemons = [...pokemon];
+
+
   closeselection(){
     this.ref.close();
   }

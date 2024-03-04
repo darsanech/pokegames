@@ -3,16 +3,17 @@ import { RouterOutlet } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { WeaponslistComponent } from '../weaponslist/weaponslist.component';
 import { CheckweaponService } from '../services/checkweapon.service';
+import { PokeapiService } from '../services/pokeapi.service';
 
 @Component({
   selector: 'app-sudoku',
   standalone: true,
   imports: [],
   templateUrl: './sudoku.component.html',
-  styleUrl: './sudoku.component.css'
+  styleUrl: './sudoku.component.css'  
 })
 export class SudokuComponent {
-  constructor(private dialogRef : MatDialog, private checkweapon:CheckweaponService){}
+  constructor(private dialogRef : MatDialog, private checkweapon:CheckweaponService,  private pokeapi:PokeapiService){}
   weaponservice:any;
   ngOnInit(): void {
     this.weaponservice=this.checkweapon;
@@ -20,6 +21,7 @@ export class SudokuComponent {
   reroll(){
     this.weaponservice.reroll();
   }
+  
   selectweapon(event: any){
     var target = event.target || event.srcElement || event.currentTarget;
     var idAttr = target.attributes.id;
