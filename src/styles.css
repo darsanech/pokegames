@@ -5,8 +5,45 @@
 .capitalize{
   text-transform: capitalize;
 }
+.center{
+  position: relative;
+  text-align: center;
+}
 
 /* sudoku */
+
+.selection-grid{
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  grid-template-rows:  auto auto auto auto auto;
+  gap: 15px;
+  height: 100%;
+  width: 100%;
+
+}
+.select-item {
+  aspect-ratio: 1/1;
+  height: 9vw;
+  padding: 2px;
+  font-size: 1vw;
+  text-align: center;
+  
+  background-color: transparent !important;
+  border: transparent;
+}
+.pokeball{
+  height: 8vw;
+  aspect-ratio: 1/1;
+  
+  background-color: transparent !important;
+  border: transparent;
+}
+
+.buscadorgrid{
+  background-color: transparent !important;
+
+
+}
 .guessgrid{
   display: grid;
   grid-template-columns: auto auto auto auto    ;
@@ -25,20 +62,16 @@
   padding: 2px;
   font-size: 1vw;
   text-align: center;
-  border-radius: 100%;
-  
 }
 .grid-item img{
   height: 10vw;
 }
 .skillr{
-border: 1px solid black;
-align-self: center;
-
-}
-.skillr img{
   height: 2vw;
+  position: relative;
+  align-self: center;
 }
+
 
 
 .guessspot{
@@ -47,6 +80,8 @@ background-color: brown;
 }
 
 .wfguess{
+border: 1px solid rgba(0, 0, 0, 0.8);
+border-radius: 100%;
 background: linear-gradient(
   to top,
     white 0%,
@@ -123,13 +158,7 @@ background: linear-gradient(
   }
 }
 
-.selection-grid{
-  display: grid;  
-    grid-template-columns: 20% 20% 20% 20% 20% ;
-    gap: 5px;
-    padding: 5px;
-    position:relative;
-}
+
 .grid-item:hover img {
   opacity: 100;
   pointer-events: none;

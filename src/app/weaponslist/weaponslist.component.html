@@ -1,13 +1,19 @@
-<div class="capitalize" mt-dialog-title>{{inputdata.tipo1}} & {{inputdata.tipo2}}</div>
-<input type="search" id="filters" [(ngModel)]="filteredname" placeholder="Buscar">
-<div class="selection-grid">
-    <div *ngFor="let pokemon of pokemons | filter:filteredname">
-        <button (click)="selectweapon(pokemon.url,inputdata.space)">
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.url}}.png" 
-            height="100px" width="100px" alt="Italian Trulli"
-            onerror="this.onerror=null; this.src='../../assets/sprites/miss.png'" >
-        </button>
-        <p class="capitalize"> {{pokemon.name}}</p>
+<main class="main">
+      <div class="center">
+        <img class="skillr" src="https://darsanech.github.io/pokegames/assets/tipos/{{inputdata.tipo1}}.png">
+        <input type="search" id="filters" [(ngModel)]="filteredname" placeholder="Buscar"> 
+        <img class="skillr" src="https://darsanech.github.io/pokegames/assets/tipos/{{inputdata.tipo2}}.png">
+      </div>
+    
+    <div class="selection-grid center">
+        
+        <div class="select-item wfguess" *ngFor="let pokemon of pokemons | filter:filteredname">
+                    <button class="pokeball" (click)="selectweapon(pokemon.url,inputdata.space)">
+                        <img class="pokeball" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.url}}.png" 
+                        alt={{pokemon.url}}
+                        onerror="this.onerror=null; this.src='https:/darsanech.github.io/pokegames/assets/sprites/miss.png'" >
+                    </button>
+                <p class="capitalize">{{pokemon.name}}</p>
+        </div>
     </div>
-</div>
-<button (click)="closeselection()">Close</button>
+</main>
