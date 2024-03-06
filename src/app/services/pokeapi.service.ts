@@ -13,7 +13,7 @@ export class PokeapiService implements OnInit{
 
   
   async ngOnInit(): Promise<void> {
-      const url = 'https://pokeapi.co/api/v2/pokemon?limit=151';
+      const url = 'https://pokeapi.co/api/v2/pokemon?limit=1350';
       const respuesta = await fetch(url);
       const data = await respuesta.json();
       data.results.forEach((element: {

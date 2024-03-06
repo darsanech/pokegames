@@ -75,12 +75,52 @@ export class BreedComponent implements OnInit{
   }
 
   //movimiento
+  clickPoke:any=''
+  selectedPoke=false
+  onMovePoke=false
+
   allowDrop(event: any) {
     event.preventDefault();
   }
   drag(event: any) {
     event.dataTransfer.setData('text', event.target.id);
   }
+  select(event:any){
+    console.log("pokemon clickado")
+
+    this.selectedPoke=true
+    console.log(this.clickPoke)
+    console.log(event.target.id)
+    this.clickPoke=event.target.id
+  }
+   move(event:any, zonaId:string){
+    console.log("soltamos")
+    if(this.selectedPoke && this.onMovePoke){
+      console.log("dentro del if")
+
+      event.preventDefault();
+      const pokemon = document.getElementById(this.clickPoke);
+
+      if(pokemon!=null){
+        console.log("dentro del if")
+        this.renderer.appendChild(this[zonaId].nativeElement,pokemon)
+        const offsetX = event.clientX - this[zonaId].nativeElement.offsetLeft - pokemon.clientWidth / 2;
+        const offsetY = event.clientY - this[zonaId].nativeElement.offsetTop - pokemon.clientHeight / 2 ;
+        pokemon.style.left = offsetX + 'px';
+        pokemon.style.top = offsetY + 'px';
+      }
+      this.clickPoke=''
+      this.selectedPoke=false
+      this.onMovePoke=false
+    }
+    else{
+      this.onMovePoke=true
+    }
+    
+
+  }
+
+
   drop(event: any, zonaId: string) {
     event.preventDefault();
     const data = event.dataTransfer.getData('text');

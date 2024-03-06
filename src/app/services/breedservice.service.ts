@@ -39,7 +39,7 @@ export class BreedserviceService {
   addpokemons(data:any){
     this.datagrupos.push(data.pokemon_species.map((pokemon: { url: any; }) => pokemon.url))
     const mida=data.pokemon_species.length
-      for(let i=0; i<Math.floor(Math.random()*2)+1;i++){
+      for(let i=0; i<Math.floor(Math.random()*3)+2;i++){
         const aux=Math.floor(Math.random() * (mida-i))
         var nuevopokemon=data.pokemon_species[aux]
         data.pokemon_species.splice(aux,1)
