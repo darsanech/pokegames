@@ -2,11 +2,11 @@
 
     <div class="guessgrid">
       <p></p>
-      <img class="skillr" src="https://darsanech.github.io/pokegames/assets/tipos/{{weaponservice.s[3]|titlecase}}.png" alt="{{weaponservice.s[3]}}">
-      <img class="skillr" src="https://darsanech.github.io/pokegames/assets/tipos/{{weaponservice.s[4]|titlecase}}.png" alt="{{weaponservice.s[4]}}">
-      <img class="skillr" src="https://darsanech.github.io/pokegames/assets/tipos/{{weaponservice.s[5]|titlecase}}.png" alt="{{weaponservice.s[5]}}">
+      <img *ngFor="let number of [3,4,5]"
+        class="skillr" src="https://darsanech.github.io/pokegames/assets/tipos/{{weaponservice.s[number]|titlecase}}.png" 
+        alt="{{weaponservice.s[number]}}">
 
-  
+
       <img class="skillr" src="https://darsanech.github.io/pokegames/assets/tipos/{{weaponservice.s[0]|titlecase}}.png" alt="{{weaponservice.s[0]}}">
       <button  *ngFor="let number of [0,1,2]"
         type="menu" id=number [disabled]="donini(number)" (click)="selectweapon(number)" class="grid-item wfguess">
