@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { BreedserviceService } from '../services/breedservice.service';
 import { CommonModule } from '@angular/common';
-import { PatronMovimientos, Pokemon, pokemon } from '../pokemons';
+import { PatronMovimientos} from '../pokemons';
 import { PokeapiService } from '../services/pokeapi.service';
 
 @Component({

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { pokemon, tipos_pokemon, GridTipos } from '../pokemons';
-import { PokeapiService } from './pokeapi.service';
+import { tipos_pokemon, GridTipos } from '../pokemons';
 
 
 @Injectable({
@@ -11,7 +10,6 @@ import { PokeapiService } from './pokeapi.service';
 
 export class CheckweaponService {
   tipos = [...tipos_pokemon];
-  pokemons = [...pokemon];
   [key: string]: any;
 
   s:Array<string>=["","","","","",""];
@@ -36,12 +34,12 @@ export class CheckweaponService {
     this.reroll();
   }
   reroll(){
-    var aux=this.tipos[Math.floor(Math.random() * 17)];
+    this.tipos = [...tipos_pokemon];
     for(let i=0; i<6;i++){
-      while(this.s.includes(aux)){
-        aux=this.tipos[Math.floor(Math.random() * 17)];
-      }
-      this.s[i]=aux;
+      const aux=Math.floor(Math.random() * (18-i))
+      this.s[i]=this.tipos[aux];
+      console.log(this.s[i])
+      this.tipos.splice(aux,1)
     }
     this.creargrid();
   }
@@ -49,8 +47,8 @@ export class CheckweaponService {
   chechifcorrect(id:string, tipospokemon: Array<any>, slot:number){
     const con1 = this.g[slot].condicion1 
     const con2 = this.g[slot].condicion2
-    if(tipospokemon.length<2){
-      console.log("incorrecto")
+    if((con1=="monotype" || con2=="monotype") && tipospokemon.length<2){
+      console.log("Correcto Monotype")
     }
     else if ((tipospokemon[0].type.name === con1 || tipospokemon[0].type.name === con2) &&
     (tipospokemon[1].type.name === con1 || tipospokemon[1].type.name === con2)){
@@ -59,7 +57,7 @@ export class CheckweaponService {
         this.g[slot].nombre=id;
     }
     else{
-      console.log("suda")
+      console.log("Incorrecto")
 
     }
   }

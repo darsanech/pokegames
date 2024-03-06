@@ -2,19 +2,19 @@
 
     <div class="guessgrid">
       <p></p>
-      <img class="skillr" src="https://darsanech.github.io/pokegames/assets/tipos/{{weaponservice.s[3]}}.png">
-      <img class="skillr" src="https://darsanech.github.io/pokegames/assets/tipos/{{weaponservice.s[4]}}.png">
-      <img class="skillr center" src="https://darsanech.github.io/pokegames/assets/tipos/{{weaponservice.s[5]}}.png">
+      <img class="skillr" src="https://darsanech.github.io/pokegames/assets/tipos/{{weaponservice.s[3]|titlecase}}.png" alt="{{weaponservice.s[3]}}">
+      <img class="skillr" src="https://darsanech.github.io/pokegames/assets/tipos/{{weaponservice.s[4]|titlecase}}.png" alt="{{weaponservice.s[4]}}">
+      <img class="skillr" src="https://darsanech.github.io/pokegames/assets/tipos/{{weaponservice.s[5]|titlecase}}.png" alt="{{weaponservice.s[5]}}">
 
   
-      <img class="skillr" src="https://darsanech.github.io/pokegames/assets/tipos/{{weaponservice.s[0]}}.png">
+      <img class="skillr" src="https://darsanech.github.io/pokegames/assets/tipos/{{weaponservice.s[0]|titlecase}}.png" alt="{{weaponservice.s[0]}}">
       <button  *ngFor="let number of [0,1,2]"
         type="menu" id=number [disabled]="donini(number)" (click)="selectweapon(number)" class="grid-item wfguess">
         <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{weaponservice.g[number].nombre}}.png"
         alt="{{weaponservice.g[number].nombre}}" onerror="this.onerror=null; this.src='https:/darsanech.github.io/pokegames/assets/extra/center.png'">
       </button> 
   
-      <img class="skillr" src="https://darsanech.github.io/pokegames/assets/tipos/{{weaponservice.s[1]}}.png">
+      <img class="skillr" src="https://darsanech.github.io/pokegames/assets/tipos/{{weaponservice.s[1]|titlecase}}.png" alt="{{weaponservice.s[1]}}">
 
       <button  *ngFor="let number of [3,4,5]"s
         type="menu" id=number [disabled]="donini(number)" (click)="selectweapon(number)" class="grid-item wfguess">
@@ -22,7 +22,7 @@
         alt="{{weaponservice.g[number].nombre}}" onerror="this.onerror=null; this.src='https:/darsanech.github.io/pokegames/assets/extra/center.png'">
       </button>
   
-      <img class="skillr" src="https://darsanech.github.io/pokegames/assets/tipos/{{weaponservice.s[2]}}.png">
+      <img class="skillr" src="https://darsanech.github.io/pokegames/assets/tipos/{{weaponservice.s[2]|titlecase}}.png" alt="{{weaponservice.s[2]}}">
       <button  *ngFor="let number of [6,7,8]"
         type="menu" id=number [disabled]="donini(number)" (click)="selectweapon(number)" class="grid-item wfguess">
         <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{weaponservice.g[number].nombre}}.png"
@@ -31,4 +31,4 @@
 
     </div>
   </main>
-  <button (click)="reroll()">REROLL</button>
+  <button (click)="reroll()">REROLLL</button>

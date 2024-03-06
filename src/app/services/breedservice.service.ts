@@ -1,7 +1,5 @@
 import { Injectable, ɵgetAsyncClassMetadataFn } from '@angular/core';
-import { Pokemon, grupo_huevo, pokemon } from '../pokemons';
 import { Element } from '@angular/compiler';
-import fs from 'fs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +7,6 @@ import fs from 'fs';
 
 export class BreedserviceService {
 
-  pokemons = [...pokemon];
-  grupos_huevo = [...grupo_huevo];
 
   gruposhuevoava = [0, 1, 2, 3]
   guarderia:Array<any>=new Array<any>;
@@ -40,22 +36,15 @@ export class BreedserviceService {
     return false;
   }
 
-  mismoGrupoHuevo1(p1:Pokemon, p2:Pokemon){
-    return [p2.grupohuevo1,p2.grupohuevo2].includes(p1.grupohuevo1);
-  }
-  mismoGrupoHuevo2(p1:Pokemon, p2:Pokemon){
-    return [p2.grupohuevo1,p2.grupohuevo2].includes(p1.grupohuevo2)
-  }
-
   addpokemons(data:any){
     this.datagrupos.push(data.pokemon_species.map((pokemon: { url: any; }) => pokemon.url))
     const mida=data.pokemon_species.length
       for(let i=0; i<Math.floor(Math.random()*2)+1;i++){
-      const aux=Math.floor(Math.random() * mida)
-      var nuevopokemon=data.pokemon_species[aux]
-      data.pokemon_species.splice(aux,1)
-      this.guarderia.push(nuevopokemon);
-    }
+        const aux=Math.floor(Math.random() * (mida-i))
+        var nuevopokemon=data.pokemon_species[aux]
+        data.pokemon_species.splice(aux,1)
+        this.guarderia.push(nuevopokemon);
+      }
 
   }
 
