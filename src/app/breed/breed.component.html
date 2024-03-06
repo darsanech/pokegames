@@ -13,10 +13,9 @@
   draggable="true"
   (dragstart)="drag($event)"
   (click)="select($event)"
-  class="pokemonguarderia"
+  class="pokemonguarderia move"
   style.left.px={{randomoffset[index].posx}}
   style.top.px={{randomoffset[index].posy}}
-  style.animation-delay={{randomoffset[index].delay}}
 > 
 </div>
 
@@ -36,6 +35,7 @@
   class="zonaCrianza"
   (click)="move($event,'zona2')"
   (drop)="drop($event, 'zona2')"
+  (dragover)="allowDrop($event)"
   ></div>
   <div id="zona3"
   #zona3
