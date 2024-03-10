@@ -38,7 +38,6 @@ export class CheckweaponService {
     for(let i=0; i<6;i++){
       const aux=Math.floor(Math.random() * (18-i))
       this.s[i]=this.tipos[aux];
-      console.log(this.s[i])
       this.tipos.splice(aux,1)
     }
     this.creargrid();
@@ -61,11 +60,9 @@ export class CheckweaponService {
     }
     else if ((tipospokemon[0].type.name === con1 || tipospokemon[0].type.name === con2) &&
     (tipospokemon[1].type.name === con1 || tipospokemon[1].type.name === con2)){
-        console.log("correcto")
         this.g[slot].correct="true";
         this.g[slot].nombre=id;
         return "true";
-
     }
     return "false"
   }
