@@ -1,8 +1,8 @@
-<main class="main">
-      <div class="center">
-        <img class="skillr" src="https://darsanech.github.io/pokegames/assets/tipos/{{inputdata.tipo1}}.png">
-        <input type="search" id="filters" [(ngModel)]="filteredname" placeholder="Buscar"> 
-        <img class="skillr" src="https://darsanech.github.io/pokegames/assets/tipos/{{inputdata.tipo2}}.png">
+<main>
+      <div class="center" style="margin: 5px;">
+        <img class="skillr" src="https://darsanech.github.io/pokegames/assets/tipos/{{inputdata.tipo1|titlecase}}.png">
+        <input style="margin: 5px;" type="search" id="filters" [(ngModel)]="filteredname" placeholder="Buscar"> 
+        <img class="skillr" src="https://darsanech.github.io/pokegames/assets/tipos/{{inputdata.tipo2|titlecase}}.png">
       </div>
     
     <div class="selection-grid center">

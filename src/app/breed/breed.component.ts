@@ -3,6 +3,9 @@ import { BreedserviceService } from '../services/breedservice.service';
 import { CommonModule } from '@angular/common';
 import { PatronMovimientos} from '../pokemons';
 import { PokeapiService } from '../services/pokeapi.service';
+import { MatDialog } from '@angular/material/dialog';
+import { PopupComponent } from '../popup/popup.component';
+import { EOL } from 'os';
 
 @Component({
   selector: 'app-breed',
@@ -24,7 +27,7 @@ export class BreedComponent implements OnInit{
   @ViewChild('zona4') zona4!: ElementRef;
 
 
-  constructor(private breedservice: BreedserviceService, private renderer:Renderer2, private pokeapi:PokeapiService){
+  constructor(private dialogRef : MatDialog, private breedservice: BreedserviceService, private renderer:Renderer2, private pokeapi:PokeapiService){
     
   }
   async ngOnInit(): Promise<void> {
@@ -62,16 +65,33 @@ export class BreedComponent implements OnInit{
   //comprobar quienes estan en cada zona
   pasarLista(){
     this.breedservice.relist()
+    if(this.zona0.nativeElement.children.length>0){
+      this.renderer.setStyle(this.zona0.nativeElement,'background-color','#FFB2B2')
+    }
+    else{
+      this.renderer.setStyle(this.zona0.nativeElement,'background-color','#B2FFB2')
+    }
     for(let i=1; i<5; i++){
       if(this.breedservice.puedenCriar(this["zona"+i].nativeElement.children)){
-        this.renderer.setStyle(this["zona"+i].nativeElement,'background-color','green')
+        this.renderer.setStyle(this["zona"+i].nativeElement,'background-color','#B2FFB2')
       }
       else{
-        this.renderer.setStyle(this["zona"+i].nativeElement,'background-color','red')
+        this.renderer.setStyle(this["zona"+i].nativeElement,'background-color','#FFB2B2')
       }
-      
     }
-
+  }
+  help(){
+    const comm="Mueve los pokemons a los recuadros de abajo. \nPuedes arrastrarlos o clicarlos para seleccionarlos y luego clicar en que recuadro quieres dejarlo. \nTienes que separarlos para que todos los Pokemons dentro de cada recuadro tengan el mismo grupo huevo. \n Una vez creas que están todos donde toca, dale al boton de Check, si todos los recuadros salen en verde, esta correcto. Si sale de color rojo, hay uno o más que no pertenecen al mismo grupo huevo."
+    const dialogRef =this.dialogRef.open(PopupComponent,{
+      width:'60%',
+      enterAnimationDuration:'500ms',
+      exitAnimationDuration:'250ms',
+      height:'80%',
+      data:{
+        title:'COMO JUGAR',
+        desc: comm
+      }
+    })
   }
 
   //movimiento

@@ -37,7 +37,7 @@ export class WeaponslistComponent implements OnInit{
   }
   async selectweapon(id: any, slot:any){
     var pokemondata=await this.pokeapi.detalles(id)
-    this.checkweapon.chechifcorrect(pokemondata.id,pokemondata.tipo,slot)
-    this.ref.close();
+    let correcto=this.checkweapon.chechifcorrect(pokemondata.id,pokemondata.tipo,slot)
+    this.ref.close(correcto);
   }
 }

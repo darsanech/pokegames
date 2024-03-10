@@ -1,3 +1,4 @@
+<div>
 <div
   #zona0
   id="zona0"
@@ -18,8 +19,6 @@
   style.top.px={{randomoffset[index].posy}}
 > 
 </div>
-
-
 
 <div class="gridGuarderia">
 
@@ -52,4 +51,10 @@
   (dragover)="allowDrop($event)"
   ></div>
 </div>
-<button (click)="pasarLista()">Check</button>
+<div class="botoncria">
+<button  (click)="pasarLista()">Check</button>
+</div>
+<div style="margin-left: 0; text-align: center;">
+  <button class="botonayuda"  (click)="help()">HELP</button>
+</div>
+</div>

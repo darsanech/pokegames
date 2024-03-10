@@ -1,7 +1,7 @@
-<main class="main">
+<main #todo class="main">
 
-    <div class="guessgrid">
-      <p></p>
+    <div  class="guessgrid">
+      <button class="botonayuda" (click)="help()">HELP</button>
       <img *ngFor="let number of [3,4,5]"
         class="skillr" src="https://darsanech.github.io/pokegames/assets/tipos/{{weaponservice.s[number]|titlecase}}.png" 
         alt="{{weaponservice.s[number]}}">
@@ -30,5 +30,5 @@
       </button>
 
     </div>
+  <button hidden="true" (click)="reroll()">REROLLL</button>
   </main>
-  <button (click)="reroll()">REROLLL</button>

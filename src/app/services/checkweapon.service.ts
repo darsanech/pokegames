@@ -47,19 +47,27 @@ export class CheckweaponService {
   chechifcorrect(id:string, tipospokemon: Array<any>, slot:number){
     const con1 = this.g[slot].condicion1 
     const con2 = this.g[slot].condicion2
-    if((con1=="monotype" || con2=="monotype") && tipospokemon.length<2){
-      console.log("Correcto Monotype")
+    if(tipospokemon.length<2){
+      if(con1=="monotype" && con2==tipospokemon[0].type.name){
+        this.g[slot].correct="true";
+        this.g[slot].nombre=id;
+        return "true";
+      }
+      else if(con2=="monotype" && con1==tipospokemon[0].type.name){
+        this.g[slot].correct="true";
+        this.g[slot].nombre=id;
+        return "true";
+      }
     }
     else if ((tipospokemon[0].type.name === con1 || tipospokemon[0].type.name === con2) &&
     (tipospokemon[1].type.name === con1 || tipospokemon[1].type.name === con2)){
         console.log("correcto")
         this.g[slot].correct="true";
         this.g[slot].nombre=id;
-    }
-    else{
-      console.log("Incorrecto")
+        return "true";
 
     }
+    return "false"
   }
 
 
