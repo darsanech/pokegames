@@ -1,5 +1,4 @@
-import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, ElementRef, OnInit, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { WeaponslistComponent } from '../weaponslist/weaponslist.component';
 import { CheckweaponService } from '../services/checkweapon.service';
@@ -13,10 +12,13 @@ import { PopupComponent } from '../popup/popup.component';
   standalone: true,
   imports: [CommonModule,],
   templateUrl: './sudoku.component.html',
-  styleUrl: './sudoku.component.css'  
+  styleUrls: ['./sudoku.component.css']
 })
 export class SudokuComponent {
   @ViewChild('todo') todo!: ElementRef;
+  @ViewChildren('row1') row1!: QueryList<ElementRef>;
+  @ViewChildren('row2') row2!: QueryList<ElementRef>;
+  @ViewChildren('row3') row3!: QueryList<ElementRef>;
   constructor(private dialogRef : MatDialog, private checkweapon:CheckweaponService, private renderer:Renderer2, private pokeapi:PokeapiService){}
   weaponservice:any;
   ngOnInit(): void {
@@ -31,12 +33,12 @@ export class SudokuComponent {
   }
 
   selectweapon(id: any){
-
+    console.log(id)
     const dialogRef =this.dialogRef.open(WeaponslistComponent,{
-      width:'60%',
+      width:'70%',
       enterAnimationDuration:'500ms',
       exitAnimationDuration:'250ms',
-      height:'60%',
+      height:'70%',
       data:{
         title:'Habilidades!',
         space: id,
@@ -46,20 +48,58 @@ export class SudokuComponent {
     })
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result=="true"){
-        //this.renderer.setStyle(this.todo.nativeElement,'background','radial-gradient(red 0%,transparent 70%)')
-        this.todo.nativeElement.classList.toggle('correcto');
-        setTimeout(() =>{
-          this.todo.nativeElement.classList.toggle('correcto');
-        },1000);
+      if(result[0]=="true"){
+        if(result[1]<3){
+          const child=result[1];
+          this.row1.get(child)?.nativeElement.classList.toggle('shadow-success')
+          setTimeout(() =>{
+            this.row1.get(child)?.nativeElement.classList.toggle('shadow-success')
+          },500);
+        }
+        else if(result[1]<6){
+          const child=result[1]-3;
+          this.row2.get(child)?.nativeElement.classList.toggle('shadow-success')
+          setTimeout(() =>{
+            this.row2.get(child)?.nativeElement.classList.toggle('shadow-success')
+          },500);
+        }
+        else if(result[1]<9){
+          const child=result[1]-6;
+          this.row3.get(child)?.nativeElement.classList.toggle('shadow-success')
+          setTimeout(() =>{
+            this.row3.get(child)?.nativeElement.classList.toggle('shadow-success')
+          },500);
+        }
       }
-      else if(result=="false"){
-        this.todo.nativeElement.classList.toggle('incorrecto');
-        setTimeout(() =>{
-          this.todo.nativeElement.classList.toggle('incorrecto');
-        },1000);
+      else if(result[0]=="false"){
+        if(result[1]<3){
+          const child=result[1];
+          this.row1.get(child)?.nativeElement.classList.toggle('shadow-error')
+          this.row1.get(child)?.nativeElement.classList.toggle('rumble')
+          setTimeout(() =>{
+            this.row1.get(child)?.nativeElement.classList.toggle('shadow-error')
+            this.row1.get(child)?.nativeElement.classList.toggle('rumble')
+          },500);
+        }
+        else if(result[1]<6){
+          const child=result[1]-3;
+          this.row2.get(child)?.nativeElement.classList.toggle('shadow-error')
+          this.row2.get(child)?.nativeElement.classList.toggle('rumble')
+          setTimeout(() =>{
+            this.row2.get(child)?.nativeElement.classList.toggle('shadow-error')
+            this.row2.get(child)?.nativeElement.classList.toggle('rumble')
+          },500);
+        }
+        else if(result[1]<9){
+          const child=result[1]-6;
+          this.row3.get(child)?.nativeElement.classList.toggle('shadow-error')
+          this.row3.get(child)?.nativeElement.classList.toggle('rumble')
+          setTimeout(() =>{
+            this.row3.get(child)?.nativeElement.classList.toggle('shadow-error')
+            this.row3.get(child)?.nativeElement.classList.toggle('rumble')
+          },500);
+        }
       }
-      
     })
     }
     help(){

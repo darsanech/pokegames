@@ -1,27 +1,38 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
+import {map} from 'rxjs'
+import { PokemonAPI,PokemonRes } from '../models/pokemon.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PokeapiService implements OnInit{
-  detallesPokemon: any;
+  public detallesPokemon: PokemonRes[]=[];
 
-  constructor() { 
+  constructor(private http:HttpClient) { 
     this.ngOnInit()
   }
 
 
   
   async ngOnInit(): Promise<void> {
-      const url = 'https://pokeapi.co/api/v2/pokemon?limit=1350';
-      const respuesta = await fetch(url);
-      const data = await respuesta.json();
-      data.results.forEach((element: {
-        name: any; url: string; }) => {
-        element.url=element.url.split("/").slice(-2, -1)[0];
-        element.name=element.name.replace(/-/g, " ");
-      });
-      this.detallesPokemon=data.results
+    this.fetchPokemons();
+  }
+
+  private fetchPokemons(){
+    this.http
+      .get<PokemonAPI>('https://pokeapi.co/api/v2/pokemon?limit=500')
+      .pipe(map(responseData=>{
+        const pChange:PokemonRes[] =[]
+        responseData.results.forEach(function (value){
+          pChange.push({name: value.name.replace(/-/g, " "), url: value.url.split("/").slice(-2, -1)[0]})
+        })
+        return pChange;
+      }))
+      .subscribe(pokemons=>{
+        this.detallesPokemon=pokemons;
+      }
+    );
   }
   
   async buscarDetalles(data:any):Promise<any>{

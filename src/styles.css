@@ -34,7 +34,7 @@
 .select-item {
   aspect-ratio: 1/1;
   height: 9vw;
-  margin: 2px;
+  margin: 8px;
   font-size: 1vw;
   text-align: center;
   background-color: transparent !important;
@@ -62,10 +62,10 @@
   justify-content: center;
   }
   .correcto{
-    animation: colorearverde 0.5s;
+    animation: colorearverde 0.1s;
   }
   .incorrecto{
-    animation: colorearrojo 0.5s;
+    animation: colorearrojo 0.1s;
   }
   @keyframes colorearverde {
     0% {background: transparent;}
@@ -101,17 +101,17 @@ background-color: brown;
 }
 
 .wfguess{
-border: 1px solid rgba(0, 0, 0, 0.8);
-border-radius: 100%;
-background: linear-gradient(
-  to top,
-    white 0%,
-    white 45%,
-    black 46%,
-    black 54%,
-    red 55%,
-    red 100%
-);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  border-radius: 100%;
+  background: linear-gradient(
+    to top,
+      white 0%,
+      white 45%,
+      black 46%,
+      black 54%,
+      red 55%,
+      red 100%
+  );
 }
 
 

@@ -8,12 +8,12 @@ export class FilterPipe implements PipeTransform {
 
   transform(value: any, args?: any): any {
     if(!value) return null;
-    if(!args) return null;
+    if(!args) return value.slice(0,12);
 
     args=args.toLowerCase();
     return value.filter(function(item:any){
       return JSON.stringify(item.name).toLowerCase().includes(args);
-    }).slice(0,6)
+    }).slice(0,12)
   }
 
 

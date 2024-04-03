@@ -35,3 +35,4 @@ export const tipos_pokemon =[
     "fairy",
     "monotype"
   ];
+ 

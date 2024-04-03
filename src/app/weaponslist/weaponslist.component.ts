@@ -23,9 +23,9 @@ export class WeaponslistComponent implements OnInit{
     @Inject(MAT_DIALOG_DATA) public data:any,
     private checkweapon: CheckweaponService,
     private pokeapi:PokeapiService){
-
-
   }
+
+
   async ngOnInit(): Promise<void> {
     this.inputdata=this.data;
     this.pokemons = await this.pokeapi.detallesPokemon
@@ -38,6 +38,6 @@ export class WeaponslistComponent implements OnInit{
   async selectweapon(id: any, slot:any){
     var pokemondata=await this.pokeapi.detalles(id)
     let correcto=this.checkweapon.chechifcorrect(pokemondata.id,pokemondata.tipo,slot)
-    this.ref.close(correcto);
+    this.ref.close([correcto, slot]);
   }
 }
