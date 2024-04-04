@@ -6,6 +6,7 @@ import { PokeapiService } from '../services/pokeapi.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PopupComponent } from '../popup/popup.component';
 import { EOL } from 'os';
+import { PokemonRes } from '../models/pokemon.model';
 
 @Component({
   selector: 'app-breed',
@@ -17,10 +18,9 @@ import { EOL } from 'os';
 
 export class BreedComponent implements OnInit{
   [x: string]: any;
-  pokemons:any=this.breedservice.guarderia;
+  pokemons:PokemonRes[]=this.breedservice.guarderia;
   randomoffset:Array<PatronMovimientos>=new Array<PatronMovimientos>(15);
 
-  @ViewChild('zona0') zona0!: ElementRef;
   @ViewChild('zona1') zona1!: ElementRef;
   @ViewChild('zona2') zona2!: ElementRef;
   @ViewChild('zona3') zona3!: ElementRef;
@@ -32,25 +32,14 @@ export class BreedComponent implements OnInit{
   }
   async ngOnInit(): Promise<void> {
     this.randomNumber()
-    var last:Array<string>=new Array<string>;
-    const gruposhuevo = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14];
-    for(let i=0; i<4; i++){
-      const id=Math.floor(Math.random() * gruposhuevo.length)
-      var data=await this.pokeapi.grupohuevo(gruposhuevo[id].toString());
-      gruposhuevo.splice(id,1)
-      data.pokemon_species.forEach((element: {
-        url: string; }) => {
-        element.url=element.url.split("/").slice(-2, -1)[0];
-      });
-      this.breedservice.addpokemons(data);
-    }
+    await this.breedservice.crearLista()
     this.pokemons=this.breedservice.guarderia;
 
   }
 
 
   randomNumber(){ 
-    const contenedor = document.getElementById('zona0');
+    const contenedor = document.getElementById('zona1');
     if(contenedor!=null){
       for(let i=0; i<=15; i++){
         this.randomoffset[i]={
@@ -65,12 +54,6 @@ export class BreedComponent implements OnInit{
   //comprobar quienes estan en cada zona
   pasarLista(){
     this.breedservice.relist()
-    if(this.zona0.nativeElement.children.length>0){
-      this.renderer.setStyle(this.zona0.nativeElement,'background-color','#FFB2B2')
-    }
-    else{
-      this.renderer.setStyle(this.zona0.nativeElement,'background-color','#B2FFB2')
-    }
     for(let i=1; i<5; i++){
       if(this.breedservice.puedenCriar(this["zona"+i].nativeElement.children)){
         this.renderer.setStyle(this["zona"+i].nativeElement,'background-color','#B2FFB2')

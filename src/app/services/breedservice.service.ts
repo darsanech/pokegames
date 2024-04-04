@@ -1,5 +1,6 @@
 import { Injectable, ɵgetAsyncClassMetadataFn } from '@angular/core';
 import { Element } from '@angular/compiler';
+import { PokeapiService } from './pokeapi.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class BreedserviceService {
   datagrupos:Array<any>=new Array<any>();
   correctos:Array<any>=new Array<any>();
 
-  constructor() {
+  constructor(private pokeapi:PokeapiService) {
   }
 
   relist(){
@@ -36,10 +37,27 @@ export class BreedserviceService {
     return false;
   }
 
+  async crearLista(){
+    const gruposhuevo = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14];
+    for(let i=0; i<4; i++){
+      const id=Math.floor(Math.random() * gruposhuevo.length)
+      const data=await this.pokeapi.grupohuevo(gruposhuevo[id].toString());
+      console.log(data);
+      gruposhuevo.splice(id,1)
+      data.pokemon_species.forEach((element: {
+        url: string; }) => {
+        element.url=element.url.split("/").slice(-2, -1)[0];
+      });
+      this.addpokemons(data);
+    }
+    this.guarderia.sort(() => Math.random() - 0.5);
+  }
+
   addpokemons(data:any){
+    console.log("add pokemon"+data)
     this.datagrupos.push(data.pokemon_species.map((pokemon: { url: any; }) => pokemon.url))
     const mida=data.pokemon_species.length
-      for(let i=0; i<Math.floor(Math.random()*3)+2;i++){
+      for(let i=0; i<4;i++){
         const aux=Math.floor(Math.random() * (mida-i))
         var nuevopokemon=data.pokemon_species[aux]
         data.pokemon_species.splice(aux,1)

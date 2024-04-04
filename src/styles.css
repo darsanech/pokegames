@@ -117,8 +117,6 @@ background-color: brown;
 
 
 
-
-
 /* breed */
 .zonaDrag {
   height: 200px;
@@ -140,7 +138,6 @@ background-color: brown;
   border: 2px solid black;
   background-color: aliceblue;
   position: relative;
-  border-radius: 20px;
 
 }
 

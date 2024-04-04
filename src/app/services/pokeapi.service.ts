@@ -2,12 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import {map} from 'rxjs'
 import { PokemonAPI,PokemonRes } from '../models/pokemon.model';
+import { response } from 'express';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PokeapiService implements OnInit{
   public detallesPokemon: PokemonRes[]=[];
+  public detallesGrupoHuevo: PokemonRes[]=[];
 
   constructor(private http:HttpClient) { 
     this.ngOnInit()
@@ -21,7 +23,7 @@ export class PokeapiService implements OnInit{
 
   private fetchPokemons(){
     this.http
-      .get<PokemonAPI>('https://pokeapi.co/api/v2/pokemon?limit=500')
+      .get<PokemonAPI>('https://pokeapi.co/api/v2/pokemon?limit=5')
       .pipe(map(responseData=>{
         const pChange:PokemonRes[] =[]
         responseData.results.forEach(function (value){
@@ -44,14 +46,25 @@ export class PokeapiService implements OnInit{
 
 
   async gruposhuevo(): Promise<any>{
-    const url='https://pokeapi.co/api/v2/egg-group'
-    const respuesta = await fetch(url);
-    const data = await respuesta.json();
-    data.results.pop()
-    return data.results
+    return this.http
+    .get<PokemonAPI>('https://pokeapi.co/api/v2/egg-group')
+    .pipe(map(responseData=>{
+      const pChange:PokemonRes[] =[]
+        responseData.results.forEach(function (value){
+          pChange.push({name: value.name, url: value.url.split("/").slice(-2, -1)[0]})
+        })
+        pChange.pop();
+        return pChange;
+    }))
+    .subscribe(gruposHuevos=>{
+      console.log(gruposHuevos)
+      this.detallesGrupoHuevo=gruposHuevos;
+    });
+
   }
 
   async grupohuevo(id:string): Promise<any>{
+    console.log("la id es"+id)
     const url='https://pokeapi.co/api/v2/egg-group/'+id
     const respuesta = await fetch(url);
     const data = await respuesta.json();

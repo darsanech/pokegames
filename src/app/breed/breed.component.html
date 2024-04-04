@@ -1,60 +1,79 @@
-<div>
-<div
-  #zona0
-  id="zona0"
-  class="zonaDrag"
-  (drop)="drop($event, 'zona0')"
-  (click)="move($event,'zona0')"
-  (dragover)="allowDrop($event)"
->
-<img *ngFor="let pokemon of pokemons; index as index "
-  id={{pokemon.url}}
-  alt={{pokemon.name}}
-  src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.url}}.png"
-  draggable="true"
-  (dragstart)="drag($event)"
-  (click)="select($event)"
-  class="pokemonguarderia move"
-  style.left.px={{randomoffset[index].posx}}
-  style.top.px={{randomoffset[index].posy}}
-> 
-</div>
+<div class="container-fluid position-absolute">
+  <div class="row">
+    <div class="col-6 zonaCrianza" id="zona1"
+    #zona1
+    (click)="move($event,'zona1')"
+    (drop)="drop($event, 'zona1')"
+    (dragover)="allowDrop($event)">
+    <img *ngFor="let pokemon of pokemons | slice:0:4; index as index "
+      id={{pokemon.url}}
+      alt={{pokemon.name}}
+      src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.url}}.png"
+      draggable="true"
+      (dragstart)="drag($event)"
+      (click)="select($event)"
+      class="pokemonguarderia move"
+      style.left.px={{randomoffset[index].posx}}
+      style.top.px={{randomoffset[index].posy}}
+      > 
+    </div>
+    <div class="col-6 zonaCrianza"  id="zona2"
+    #zona2
+    (click)="move($event,'zona2')"
+    (drop)="drop($event, 'zona2')"
+    (dragover)="allowDrop($event)">
+    <img *ngFor="let pokemon of pokemons | slice:4:8; index as index "
+      id={{pokemon.url}}
+      alt={{pokemon.name}}
+      src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.url}}.png"
+      draggable="true"
+      (dragstart)="drag($event)"
+      (click)="select($event)"
+      class="pokemonguarderia move"
+      style.left.px={{randomoffset[index+4].posx}}
+      style.top.px={{randomoffset[index+4].posy}}
+      >
+    </div>
+    <div class="col-6 zonaCrianza" id="zona3"
+    #zona3
+    (click)="move($event,'zona3')"
+    (drop)="drop($event, 'zona3')"
+    (dragover)="allowDrop($event)">
+    <img *ngFor="let pokemon of pokemons | slice:8:12; index as index "
+      id={{pokemon.url}}
+      alt={{pokemon.name}}
+      src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.url}}.png"
+      draggable="true"
+      (dragstart)="drag($event)"
+      (click)="select($event)"
+      class="pokemonguarderia move"
+      style.left.px={{randomoffset[index+8].posx}}
+      style.top.px={{randomoffset[index+8].posy}}
+      >
+    </div>
+    <div class="col-6 zonaCrianza" id="zona4"
+    #zona4
+    (click)="move($event,'zona4')"
+    (drop)="drop($event, 'zona4')"
+    (dragover)="allowDrop($event)">
+    <img *ngFor="let pokemon of pokemons | slice:12:16; index as index "
+      id={{pokemon.url}}
+      alt={{pokemon.name}}
+      src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.url}}.png"
+      draggable="true"
+      (dragstart)="drag($event)"
+      (click)="select($event)"
+      class="pokemonguarderia move"
+      style.left.px={{randomoffset[index+12].posx}}
+      style.top.px={{randomoffset[index+12].posy}}
+      >
+    </div>
+    <div class="position-absolute  top-50 start-50 translate-middle">
+      <button class="btn btn-primary btn-lg position-absolute  top-50 start-50 translate-middle" type="button" (click)="pasarLista()">Check</button>
+    </div>
+    <div class="position-absolute top-0 start-50 translate-middle-x">
+      <button class="btn btn-info btn-sm position-absolute top-50 start-50 translate-middle" type="button"  (click)="help()">HELP</button>
+    </div>
 
-<div class="gridGuarderia">
-
-  <div id="zona1"
-  #zona1
-  class="zonaCrianza"
-  (click)="move($event,'zona1')"
-  (drop)="drop($event, 'zona1')"
-  (dragover)="allowDrop($event)"
-  ></div>
-  <div id="zona2"
-  #zona2
-  class="zonaCrianza"
-  (click)="move($event,'zona2')"
-  (drop)="drop($event, 'zona2')"
-  (dragover)="allowDrop($event)"
-  ></div>
-  <div id="zona3"
-  #zona3
-  class="zonaCrianza"
-  (click)="move($event,'zona3')"
-  (drop)="drop($event, 'zona3')"
-  (dragover)="allowDrop($event)"
-  ></div>
-  <div id="zona4"
-  #zona4
-  class="zonaCrianza"
-  (click)="move($event,'zona4')"
-  (drop)="drop($event, 'zona4')"
-  (dragover)="allowDrop($event)"
-  ></div>
-</div>
-<div class="botoncria">
-<button  (click)="pasarLista()">Check</button>
-</div>
-<div style="margin-left: 0; text-align: center;">
-  <button class="botonayuda"  (click)="help()">HELP</button>
-</div>
+  </div>
 </div>
