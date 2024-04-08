@@ -49,9 +49,9 @@ export class BreedserviceService {
           element.url=element.url.split("/").slice(-2, -1)[0];
         });
         this.addpokemons(data);
+        if(i==3) this.guarderia.sort(() => Math.random() - 0.5);
       })
     }
-    this.guarderia.sort(() => Math.random() - 0.5);
   }
 
   addpokemons(data:any){

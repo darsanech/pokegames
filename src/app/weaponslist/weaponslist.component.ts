@@ -28,7 +28,10 @@ export class WeaponslistComponent implements OnInit{
 
   async ngOnInit(): Promise<void> {
     this.inputdata=this.data;
-    this.pokemons = await this.pokeapi.detallesPokemon
+    this.pokeapi.fetchPokemons().subscribe(pokemons=>{
+      this.pokemons=pokemons;
+    }
+  )
   }
 
 
@@ -36,8 +39,10 @@ export class WeaponslistComponent implements OnInit{
     this.ref.close();
   }
   async selectweapon(id: any, slot:any){
-    var pokemondata=await this.pokeapi.detalles(id)
-    let correcto=this.checkweapon.chechifcorrect(pokemondata.id,pokemondata.tipo,slot)
-    this.ref.close([correcto, slot]);
+    this.pokeapi.detalles(id).subscribe(pokemondata=>{
+      console.log(pokemondata)
+      let correcto=this.checkweapon.chechifcorrect(pokemondata.id,pokemondata.types,slot)
+      this.ref.close([correcto, slot]);
+    })
   }
 }

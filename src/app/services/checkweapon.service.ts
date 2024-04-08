@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { tipos_pokemon, GridTipos } from '../pokemons';
+import { PokemonRes } from '../models/pokemon.model';
 
 
 @Injectable({
@@ -14,6 +15,7 @@ export class CheckweaponService {
 
   s:Array<string>=["","","","","",""];
   g:Array<GridTipos>=new Array<GridTipos>(9);
+  public detallesPokemon: PokemonRes[]=[];
   
   creargrid(){
     var x=0;
@@ -30,6 +32,7 @@ export class CheckweaponService {
   }
   
   constructor() { 
+  
     this.reroll();
   }
   reroll(){

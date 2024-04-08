@@ -16,6 +16,18 @@ export class GrupoHuevo{
         this.pokemon_species=pokemon_species;
     }
 }
+export class PokemonData{
+    public id: string;
+    public name: string;
+    public types: PokemonRes[];
+    public species: PokemonRes;
+    constructor(id:string, name:string, types:PokemonRes[], species:PokemonRes){
+        this.id=id;
+        this.name=name;
+        this.types=types;
+        this.species=species;
+    }
+}
 export class PokemonAPI{
     public results: PokemonRes[];
     constructor(results: PokemonRes[]){
