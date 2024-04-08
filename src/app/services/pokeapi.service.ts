@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import {map} from 'rxjs'
-import { PokemonAPI,PokemonRes } from '../models/pokemon.model';
+import { GrupoHuevo, PokemonAPI,PokemonRes } from '../models/pokemon.model';
 import { response } from 'express';
 
 @Injectable({
@@ -62,11 +62,9 @@ export class PokeapiService implements OnInit{
 
   }
 
-  async grupohuevo(id:string){
-    const url='https://pokeapi.co/api/v2/egg-group/'+id
-    const respuesta = await fetch(url);
-    const data = await respuesta.json();
-    return data
+  grupohuevo(id:string){
+    return this.http
+    .get<GrupoHuevo>('https://pokeapi.co/api/v2/egg-group/'+id)
   }
 
 

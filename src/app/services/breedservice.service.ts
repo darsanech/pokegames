@@ -2,6 +2,7 @@ import { Injectable, ɵgetAsyncClassMetadataFn } from '@angular/core';
 import { Element } from '@angular/compiler';
 import { PokeapiService } from './pokeapi.service';
 import { PokemonRes } from '../models/pokemon.model';
+import { Subscription } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -41,13 +42,14 @@ export class BreedserviceService {
     const gruposhuevo = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14];
     for(let i=0; i<4; i++){
       const id=Math.floor(Math.random() * gruposhuevo.length)
-      const data=await this.pokeapi.grupohuevo(gruposhuevo[id].toString());
-      gruposhuevo.splice(id,1)
-      data.pokemon_species.forEach((element: {
-        url: string; }) => {
-        element.url=element.url.split("/").slice(-2, -1)[0];
-      });
-      this.addpokemons(data);
+      this.pokeapi.grupohuevo(gruposhuevo[id].toString()).subscribe(data=>{
+        gruposhuevo.splice(id,1)
+        data.pokemon_species.forEach((element: {
+          url: string; }) => {
+          element.url=element.url.split("/").slice(-2, -1)[0];
+        });
+        this.addpokemons(data);
+      })
     }
     this.guarderia.sort(() => Math.random() - 0.5);
   }
