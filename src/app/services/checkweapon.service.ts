@@ -23,7 +23,6 @@ export class CheckweaponService {
           nombre:"Click",
           condicion1:this.s[i],
           condicion2:this.s[j],
-          correct:"false",
         }
         x++;
       }
@@ -48,19 +47,16 @@ export class CheckweaponService {
     const con2 = this.g[slot].condicion2
     if(tipospokemon.length<2){
       if(con1=="monotype" && con2==tipospokemon[0].type.name){
-        this.g[slot].correct="true";
         this.g[slot].nombre=id;
         return "true";
       }
       else if(con2=="monotype" && con1==tipospokemon[0].type.name){
-        this.g[slot].correct="true";
         this.g[slot].nombre=id;
         return "true";
       }
     }
     else if ((tipospokemon[0].type.name === con1 || tipospokemon[0].type.name === con2) &&
     (tipospokemon[1].type.name === con1 || tipospokemon[1].type.name === con2)){
-        this.g[slot].correct="true";
         this.g[slot].nombre=id;
         return "true";
     }

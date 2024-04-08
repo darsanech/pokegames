@@ -1,6 +1,7 @@
 import { Injectable, ɵgetAsyncClassMetadataFn } from '@angular/core';
 import { Element } from '@angular/compiler';
 import { PokeapiService } from './pokeapi.service';
+import { PokemonRes } from '../models/pokemon.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +11,8 @@ export class BreedserviceService {
 
 
   gruposhuevoava = [0, 1, 2, 3]
-  guarderia:Array<any>=new Array<any>;
-  datagrupos:Array<any>=new Array<any>();
-  correctos:Array<any>=new Array<any>();
+  guarderia:PokemonRes[]=[];
+  datagrupos:Array<string>=new Array<string>();
 
   constructor(private pokeapi:PokeapiService) {
   }
@@ -42,7 +42,6 @@ export class BreedserviceService {
     for(let i=0; i<4; i++){
       const id=Math.floor(Math.random() * gruposhuevo.length)
       const data=await this.pokeapi.grupohuevo(gruposhuevo[id].toString());
-      console.log(data);
       gruposhuevo.splice(id,1)
       data.pokemon_species.forEach((element: {
         url: string; }) => {
@@ -54,7 +53,6 @@ export class BreedserviceService {
   }
 
   addpokemons(data:any){
-    console.log("add pokemon"+data)
     this.datagrupos.push(data.pokemon_species.map((pokemon: { url: any; }) => pokemon.url))
     const mida=data.pokemon_species.length
       for(let i=0; i<4;i++){

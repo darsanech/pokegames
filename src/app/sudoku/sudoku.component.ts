@@ -15,10 +15,10 @@ import { PopupComponent } from '../popup/popup.component';
   styleUrls: ['./sudoku.component.css']
 })
 export class SudokuComponent {
-  @ViewChild('todo') todo!: ElementRef;
+  [x: string]: any;
+  @ViewChildren('row0') row0!: QueryList<ElementRef>;
   @ViewChildren('row1') row1!: QueryList<ElementRef>;
   @ViewChildren('row2') row2!: QueryList<ElementRef>;
-  @ViewChildren('row3') row3!: QueryList<ElementRef>;
   constructor(private dialogRef : MatDialog, private checkweapon:CheckweaponService, private renderer:Renderer2, private pokeapi:PokeapiService){}
   weaponservice:any;
   ngOnInit(): void {
@@ -28,12 +28,7 @@ export class SudokuComponent {
     this.weaponservice.reroll();
   }
   
-  donini(id:any){
-    return this.weaponservice.g[id].correct=="true"
-  }
-
   selectweapon(id: any){
-    console.log(id)
     const dialogRef =this.dialogRef.open(WeaponslistComponent,{
       width:'70%',
       enterAnimationDuration:'500ms',
@@ -48,57 +43,22 @@ export class SudokuComponent {
     })
 
     dialogRef.afterClosed().subscribe(result => {
+      const row=Math.trunc(result[1]/3)
+      const child=result[1]-(3*row)
       if(result[0]=="true"){
-        if(result[1]<3){
-          const child=result[1];
-          this.row1.get(child)?.nativeElement.classList.toggle('shadow-success')
+        this["row"+row].get(child)?.nativeElement.classList.toggle('shadow-success')
+        this["row"+row].get(child)?.nativeElement.classList.toggle('disabled')
           setTimeout(() =>{
-            this.row1.get(child)?.nativeElement.classList.toggle('shadow-success')
+            this["row"+row].get(child)?.nativeElement.classList.toggle('shadow-success')
           },500);
-        }
-        else if(result[1]<6){
-          const child=result[1]-3;
-          this.row2.get(child)?.nativeElement.classList.toggle('shadow-success')
-          setTimeout(() =>{
-            this.row2.get(child)?.nativeElement.classList.toggle('shadow-success')
-          },500);
-        }
-        else if(result[1]<9){
-          const child=result[1]-6;
-          this.row3.get(child)?.nativeElement.classList.toggle('shadow-success')
-          setTimeout(() =>{
-            this.row3.get(child)?.nativeElement.classList.toggle('shadow-success')
-          },500);
-        }
       }
       else if(result[0]=="false"){
-        if(result[1]<3){
-          const child=result[1];
-          this.row1.get(child)?.nativeElement.classList.toggle('shadow-error')
-          this.row1.get(child)?.nativeElement.classList.toggle('rumble')
+        this["row"+row].get(child)?.nativeElement.classList.toggle('shadow-error')
+          this["row"+row].get(child)?.nativeElement.classList.toggle('rumble')
           setTimeout(() =>{
-            this.row1.get(child)?.nativeElement.classList.toggle('shadow-error')
-            this.row1.get(child)?.nativeElement.classList.toggle('rumble')
+            this["row"+row].get(child)?.nativeElement.classList.toggle('shadow-error')
+            this["row"+row].get(child)?.nativeElement.classList.toggle('rumble')
           },500);
-        }
-        else if(result[1]<6){
-          const child=result[1]-3;
-          this.row2.get(child)?.nativeElement.classList.toggle('shadow-error')
-          this.row2.get(child)?.nativeElement.classList.toggle('rumble')
-          setTimeout(() =>{
-            this.row2.get(child)?.nativeElement.classList.toggle('shadow-error')
-            this.row2.get(child)?.nativeElement.classList.toggle('rumble')
-          },500);
-        }
-        else if(result[1]<9){
-          const child=result[1]-6;
-          this.row3.get(child)?.nativeElement.classList.toggle('shadow-error')
-          this.row3.get(child)?.nativeElement.classList.toggle('rumble')
-          setTimeout(() =>{
-            this.row3.get(child)?.nativeElement.classList.toggle('shadow-error')
-            this.row3.get(child)?.nativeElement.classList.toggle('rumble')
-          },500);
-        }
       }
     })
     }

@@ -46,7 +46,7 @@ export class PokeapiService implements OnInit{
 
 
   async gruposhuevo(): Promise<any>{
-    return this.http
+    this.http
     .get<PokemonAPI>('https://pokeapi.co/api/v2/egg-group')
     .pipe(map(responseData=>{
       const pChange:PokemonRes[] =[]
@@ -57,14 +57,12 @@ export class PokeapiService implements OnInit{
         return pChange;
     }))
     .subscribe(gruposHuevos=>{
-      console.log(gruposHuevos)
       this.detallesGrupoHuevo=gruposHuevos;
     });
 
   }
 
-  async grupohuevo(id:string): Promise<any>{
-    console.log("la id es"+id)
+  async grupohuevo(id:string){
     const url='https://pokeapi.co/api/v2/egg-group/'+id
     const respuesta = await fetch(url);
     const data = await respuesta.json();

@@ -2,7 +2,6 @@ export interface GridTipos{
   nombre: string;
   condicion1: string;
   condicion2: string;
-  correct: string;
 }
 export interface PatronMovimientos {
   posx: number;

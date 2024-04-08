@@ -8,7 +8,7 @@
       </div>
     
     <div class="row">
-        <div class="col-3  d-flex align-items-center justify-content-center" *ngFor="let pokemon of pokemons | filter:filteredname">
+        <div class="col-sm-4 col-md-3 col-6 d-flex align-items-center justify-content-center" *ngFor="let pokemon of pokemons | filter:filteredname">
           <div>
             <button class="wfguess" (click)="selectweapon(pokemon.url,inputdata.space)">
               <img class="img-fluid" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.url}}.png" 

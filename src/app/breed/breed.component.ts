@@ -5,7 +5,6 @@ import { PatronMovimientos} from '../pokemons';
 import { PokeapiService } from '../services/pokeapi.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PopupComponent } from '../popup/popup.component';
-import { EOL } from 'os';
 import { PokemonRes } from '../models/pokemon.model';
 
 @Component({
