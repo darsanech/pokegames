@@ -43,14 +43,15 @@ export class BreedserviceService {
     for(let i=0; i<4; i++){
       const id=Math.floor(Math.random() * gruposhuevo.length)
       this.pokeapi.grupohuevo(gruposhuevo[id].toString()).subscribe(data=>{
-        gruposhuevo.splice(id,1)
         data.pokemon_species.forEach((element: {
           url: string; }) => {
           element.url=element.url.split("/").slice(-2, -1)[0];
         });
         this.addpokemons(data);
         if(i==3) this.guarderia.sort(() => Math.random() - 0.5);
+
       })
+      gruposhuevo.splice(id,1)
     }
   }
 

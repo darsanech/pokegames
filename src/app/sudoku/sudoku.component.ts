@@ -43,25 +43,29 @@ export class SudokuComponent {
     })
 
     dialogRef.afterClosed().subscribe(result => {
-      const row=Math.trunc(result[1]/3)
-      const child=result[1]-(3*row)
-      if(result[0]=="true"){
-        this["row"+row].get(child)?.nativeElement.classList.toggle('shadow-success')
-        this["row"+row].get(child)?.nativeElement.classList.toggle('disabled')
-          setTimeout(() =>{
-            this["row"+row].get(child)?.nativeElement.classList.toggle('shadow-success')
-          },500);
-      }
-      else if(result[0]=="false"){
-        this["row"+row].get(child)?.nativeElement.classList.toggle('shadow-error')
-          this["row"+row].get(child)?.nativeElement.classList.toggle('rumble')
-          setTimeout(() =>{
-            this["row"+row].get(child)?.nativeElement.classList.toggle('shadow-error')
+      if(result!=null){
+        const row=Math.trunc(result[1]/3)
+        const child=result[1]-(3*row)
+        if(result[0]=="true"){
+          this["row"+row].get(child)?.nativeElement.classList.toggle('shadow-success')
+          this["row"+row].get(child)?.nativeElement.classList.toggle('disabled')
+            setTimeout(() =>{
+              this["row"+row].get(child)?.nativeElement.classList.toggle('shadow-success')
+            },500);
+        }
+        else if(result[0]=="false"){
+          this["row"+row].get(child)?.nativeElement.classList.toggle('shadow-error')
             this["row"+row].get(child)?.nativeElement.classList.toggle('rumble')
-          },500);
+            setTimeout(() =>{
+              this["row"+row].get(child)?.nativeElement.classList.toggle('shadow-error')
+              this["row"+row].get(child)?.nativeElement.classList.toggle('rumble')
+            },500);
+        }
       }
+      
     })
     }
+
     help(){
       const comm="En esta cuadricula de 3x3 formada por pokeballs tienes que adivinar que pokemon contiene los tipos pedidos. \nPara seleccionar un pokemon, haz click en la pokeball y usa la barra de búsqueda para encontrarlo. \nEn caso de ser correcto, el pokemon quedará guardado y la pantalla se iluminara en verde. \nEn caso contrario se iluminará de rojo."
       const dialogRef =this.dialogRef.open(PopupComponent,{
