@@ -20,7 +20,6 @@ export class BreedserviceService {
     this.gruposhuevoava = [0, 1, 2, 3]
   }
   puedenCriar(lista:HTMLCollection){
-    console.log(lista)
     const ids = [];
     if(lista.length==0){
       return true

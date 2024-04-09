@@ -26,11 +26,11 @@ export class PokemonType{
     }
 }
 export class PokemonData{
-    public id: string;
+    public id: number;
     public name: string;
     public types: PokemonType[];
     public species: PokemonRes;
-    constructor(id:string, name:string, types:PokemonType[], species:PokemonRes){
+    constructor(id:number, name:string, types:PokemonType[], species:PokemonRes){
         this.id=id;
         this.name=name;
         this.types=types;

@@ -1,8 +1,9 @@
 export interface GridTipos {
-  nombre: string;
+  nombre: number;
   condicion1: string;
   condicion2: string;
 }
+
 export interface Tipo {
   name: string;
 }

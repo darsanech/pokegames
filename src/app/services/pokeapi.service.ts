@@ -32,7 +32,7 @@ export class PokeapiService {
       .get<GrupoHuevo>('https://pokeapi.co/api/v2/egg-group/' + id)
   }
 
-  detalles(id: string) {
+  detalles(id: number) {
     return this.http
       .get<PokemonData>('https://pokeapi.co/api/v2/pokemon/' + id)
       .pipe(map(responseData => {

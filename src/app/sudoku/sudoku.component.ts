@@ -10,7 +10,6 @@ import { PopupComponent } from '../popup/popup.component';
   selector: 'app-sudoku',
   standalone: true,
   imports: [CommonModule,],
-  providers: [CheckweaponService],
   templateUrl: './sudoku.component.html',
   styleUrls: ['./sudoku.component.css']
 })
@@ -32,9 +31,9 @@ export class SudokuComponent {
       exitAnimationDuration: '250ms',
       height: '70%',
       data: {
-        space: id,
-        tipo1: this.weaponservice.g[id].condicion1,
-        tipo2: this.weaponservice.g[id].condicion2,
+        nombre: id,
+        condicion1: this.weaponservice.gridPokemons[id].condicion1,
+        condicion2: this.weaponservice.gridPokemons[id].condicion2,
       }
     })
 
