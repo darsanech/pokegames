@@ -1,8 +1,7 @@
-import { Component, ElementRef, OnInit, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
+import { Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { WeaponslistComponent } from '../weaponslist/weaponslist.component';
-import { CheckweaponService } from '../services/checkweapon.service';
-import { PokeapiService } from '../services/pokeapi.service';
+import { WeaponslistComponent } from './weaponslist/weaponslist.component';
+import { CheckweaponService } from './services/checkweapon.service';
 import { CommonModule } from '@angular/common';
 import { PopupComponent } from '../popup/popup.component';
 
@@ -11,6 +10,7 @@ import { PopupComponent } from '../popup/popup.component';
   selector: 'app-sudoku',
   standalone: true,
   imports: [CommonModule,],
+  providers: [CheckweaponService],
   templateUrl: './sudoku.component.html',
   styleUrls: ['./sudoku.component.css']
 })
@@ -19,66 +19,62 @@ export class SudokuComponent {
   @ViewChildren('row0') row0!: QueryList<ElementRef>;
   @ViewChildren('row1') row1!: QueryList<ElementRef>;
   @ViewChildren('row2') row2!: QueryList<ElementRef>;
-  constructor(private dialogRef : MatDialog, private checkweapon:CheckweaponService, private renderer:Renderer2, private pokeapi:PokeapiService){}
-  weaponservice:any;
-  ngOnInit(): void {
-    this.weaponservice=this.checkweapon;
-  }
-  reroll(){
+  constructor(private dialogRef: MatDialog, private checkweapon: CheckweaponService) { }
+  weaponservice: CheckweaponService = this.checkweapon;
+  reroll() {
     this.weaponservice.reroll();
   }
-  
-  selectweapon(id: any){
-    const dialogRef =this.dialogRef.open(WeaponslistComponent,{
-      width:'70%',
-      enterAnimationDuration:'500ms',
-      exitAnimationDuration:'250ms',
-      height:'70%',
-      data:{
-        title:'Habilidades!',
+
+  selectweapon(id: number) {
+    const dialogRef = this.dialogRef.open(WeaponslistComponent, {
+      width: '70%',
+      enterAnimationDuration: '500ms',
+      exitAnimationDuration: '250ms',
+      height: '70%',
+      data: {
         space: id,
-        tipo1: this.checkweapon.g[id].condicion1,
-        tipo2: this.checkweapon.g[id].condicion2,
+        tipo1: this.weaponservice.g[id].condicion1,
+        tipo2: this.weaponservice.g[id].condicion2,
       }
     })
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result!=null){
-        const row=Math.trunc(result[1]/3)
-        const child=result[1]-(3*row)
-        if(result[0]=="true"){
-          this["row"+row].get(child)?.nativeElement.classList.toggle('shadow-success')
-          this["row"+row].get(child)?.nativeElement.classList.toggle('disabled')
-            setTimeout(() =>{
-              this["row"+row].get(child)?.nativeElement.classList.toggle('shadow-success')
-            },500);
+      if (result != null) {
+        const row = Math.trunc(result[1] / 3)
+        const child = result[1] - (3 * row)
+        if (result[0] == "true") {
+          this["row" + row].get(child)?.nativeElement.classList.toggle('shadow-success')
+          this["row" + row].get(child)?.nativeElement.classList.toggle('disabled')
+          setTimeout(() => {
+            this["row" + row].get(child)?.nativeElement.classList.toggle('shadow-success')
+          }, 500);
         }
-        else if(result[0]=="false"){
-          this["row"+row].get(child)?.nativeElement.classList.toggle('shadow-error')
-            this["row"+row].get(child)?.nativeElement.classList.toggle('rumble')
-            setTimeout(() =>{
-              this["row"+row].get(child)?.nativeElement.classList.toggle('shadow-error')
-              this["row"+row].get(child)?.nativeElement.classList.toggle('rumble')
-            },500);
+        else if (result[0] == "false") {
+          this["row" + row].get(child)?.nativeElement.classList.toggle('shadow-error')
+          this["row" + row].get(child)?.nativeElement.classList.toggle('rumble')
+          setTimeout(() => {
+            this["row" + row].get(child)?.nativeElement.classList.toggle('shadow-error')
+            this["row" + row].get(child)?.nativeElement.classList.toggle('rumble')
+          }, 500);
         }
       }
-      
-    })
-    }
 
-    help(){
-      const comm="En esta cuadricula de 3x3 formada por pokeballs tienes que adivinar que pokemon contiene los tipos pedidos. \nPara seleccionar un pokemon, haz click en la pokeball y usa la barra de búsqueda para encontrarlo. \nEn caso de ser correcto, el pokemon quedará guardado y la pantalla se iluminara en verde. \nEn caso contrario se iluminará de rojo."
-      const dialogRef =this.dialogRef.open(PopupComponent,{
-        width:'60%',
-        enterAnimationDuration:'500ms',
-        exitAnimationDuration:'250ms',
-        height:'80%',
-        data:{
-          title:'COMO JUGAR',
-          desc: comm
-        }
-      })
-    }
-  
+    })
+  }
+
+  help() {
+    const comm = "En esta cuadricula de 3x3 formada por pokeballs tienes que adivinar que pokemon contiene los tipos pedidos. \nPara seleccionar un pokemon, haz click en la pokeball y usa la barra de búsqueda para encontrarlo. \nEn caso de ser correcto, el pokemon quedará guardado y la pantalla se iluminara en verde. \nEn caso contrario se iluminará de rojo."
+    this.dialogRef.open(PopupComponent, {
+      width: '60%',
+      enterAnimationDuration: '500ms',
+      exitAnimationDuration: '250ms',
+      height: '80%',
+      data: {
+        title: 'COMO JUGAR',
+        desc: comm
+      }
+    })
+  }
+
 
 }

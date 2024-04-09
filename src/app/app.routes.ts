@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
-import { GridComponent } from './grid/grid.component';
-import { WeaponslistComponent } from './weaponslist/weaponslist.component';
+import { WeaponslistComponent } from './sudoku/weaponslist/weaponslist.component';
 import { BreedComponent } from './breed/breed.component';
 import { SudokuComponent } from './sudoku/sudoku.component';
 

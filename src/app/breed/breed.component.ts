@@ -1,11 +1,11 @@
 import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { BreedserviceService } from '../services/breedservice.service';
+import { BreedserviceService } from './services/breedservice.service';
 import { CommonModule } from '@angular/common';
-import { PatronMovimientos} from '../pokemons';
 import { PokeapiService } from '../services/pokeapi.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PopupComponent } from '../popup/popup.component';
-import { PokemonRes } from '../models/pokemon.model';
+import { PokemonRes } from '../models/pokemonapi.model';
+import { PatronMovimientos } from './model/breed.model';
 
 @Component({
   selector: 'app-breed',
@@ -64,7 +64,7 @@ export class BreedComponent implements OnInit{
   }
   help(){
     const comm="Mueve los pokemons a los recuadros de abajo. \nPuedes arrastrarlos o clicarlos para seleccionarlos y luego clicar en que recuadro quieres dejarlo. \nTienes que separarlos para que todos los Pokemons dentro de cada recuadro tengan el mismo grupo huevo. \n Una vez creas que están todos donde toca, dale al boton de Check, si todos los recuadros salen en verde, esta correcto. Si sale de color rojo, hay uno o más que no pertenecen al mismo grupo huevo."
-    const dialogRef =this.dialogRef.open(PopupComponent,{
+    this.dialogRef.open(PopupComponent,{
       width:'60%',
       enterAnimationDuration:'500ms',
       exitAnimationDuration:'250ms',
@@ -92,6 +92,7 @@ export class BreedComponent implements OnInit{
   }
 
   allowDrop(event: any) {
+
     event.preventDefault();
   }
   drag(event: any) {

@@ -1,17 +1,9 @@
-import { Injectable } from '@angular/core';
-import { tipos_pokemon, GridTipos } from '../pokemons';
-import { PokemonRes } from '../models/pokemon.model';
-
-
-@Injectable({
-  providedIn: 'root'
-})
-
+import { PokemonRes, PokemonType } from '../../models/pokemonapi.model';
+import { GridTipos, tipos_pokemon } from '../models/checkweapon.model';
 
 
 export class CheckweaponService {
   tipos = [...tipos_pokemon];
-  [key: string]: any;
 
   s:Array<string>=["","","","","",""];
   g:Array<GridTipos>=new Array<GridTipos>(9);
@@ -32,7 +24,6 @@ export class CheckweaponService {
   }
   
   constructor() { 
-  
     this.reroll();
   }
   reroll(){
@@ -45,7 +36,8 @@ export class CheckweaponService {
     this.creargrid();
   }
 
-  chechifcorrect(id:string, tipospokemon: Array<any>, slot:number){
+  chechifcorrect(id:string, tipospokemon: Array<PokemonType>, slot:number){
+    console.log(tipospokemon)
     const con1 = this.g[slot].condicion1 
     const con2 = this.g[slot].condicion2
     if(tipospokemon.length<2){

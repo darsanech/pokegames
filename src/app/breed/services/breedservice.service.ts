@@ -1,8 +1,6 @@
-import { Injectable, ɵgetAsyncClassMetadataFn } from '@angular/core';
-import { Element } from '@angular/compiler';
-import { PokeapiService } from './pokeapi.service';
-import { PokemonRes } from '../models/pokemon.model';
-import { Subscription } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { PokeapiService } from '../../services/pokeapi.service';
+import { GrupoHuevo, PokemonRes } from '../../models/pokemonapi.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +11,7 @@ export class BreedserviceService {
 
   gruposhuevoava = [0, 1, 2, 3]
   guarderia:PokemonRes[]=[];
-  datagrupos:Array<string>=new Array<string>();
+  datagrupos:Array<string[]>=new Array<string[]>();
 
   constructor(private pokeapi:PokeapiService) {
   }
@@ -21,7 +19,8 @@ export class BreedserviceService {
   relist(){
     this.gruposhuevoava = [0, 1, 2, 3]
   }
-  puedenCriar(lista:any){
+  puedenCriar(lista:HTMLCollection){
+    console.log(lista)
     const ids = [];
     if(lista.length==0){
       return true
@@ -55,12 +54,12 @@ export class BreedserviceService {
     }
   }
 
-  addpokemons(data:any){
-    this.datagrupos.push(data.pokemon_species.map((pokemon: { url: any; }) => pokemon.url))
+  addpokemons(data:GrupoHuevo){
+    this.datagrupos.push(data.pokemon_species.map((pokemon: { url: string; }) => pokemon.url))
     const mida=data.pokemon_species.length
       for(let i=0; i<4;i++){
         const aux=Math.floor(Math.random() * (mida-i))
-        var nuevopokemon=data.pokemon_species[aux]
+        const nuevopokemon=data.pokemon_species[aux]
         data.pokemon_species.splice(aux,1)
         this.guarderia.push(nuevopokemon);
       }

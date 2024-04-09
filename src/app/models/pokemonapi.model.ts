@@ -6,6 +6,7 @@ export class PokemonRes{
         this.url=url;
     }
 } 
+
 export class GrupoHuevo{
     public id: number;
     public name: string;
@@ -16,12 +17,20 @@ export class GrupoHuevo{
         this.pokemon_species=pokemon_species;
     }
 }
+export class PokemonType{
+    public slot:number;
+    public type:PokemonRes;
+    constructor(slot:number, type:PokemonRes){
+        this.slot=slot;
+        this.type=type;
+    }
+}
 export class PokemonData{
     public id: string;
     public name: string;
-    public types: PokemonRes[];
+    public types: PokemonType[];
     public species: PokemonRes;
-    constructor(id:string, name:string, types:PokemonRes[], species:PokemonRes){
+    constructor(id:string, name:string, types:PokemonType[], species:PokemonRes){
         this.id=id;
         this.name=name;
         this.types=types;

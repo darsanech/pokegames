@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { FilterPipe } from '../filter.pipe';
+import { FilterPipe } from '../pipes/filter.pipe';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
