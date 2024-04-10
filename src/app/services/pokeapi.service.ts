@@ -16,7 +16,7 @@ export class PokeapiService {
 
   fetchPokemons() {
     return this.http
-      .get<PokemonAPI>('https://pokeapi.co/api/v2/pokemon?limit=500')
+      .get<PokemonAPI>('https://pokeapi.co/api/v2/pokemon?limit=1500')
       .pipe(map(responseData => {
         const pChange: PokemonRes[] = []
         responseData.results.forEach(function (value) {
